@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Z3950_resources>
+  <Z3950_group name="Российские" favorite="">
+    <Z3950_group name="Общероссийские библиотеки" favorite="">
+      <Z3950_server name="Российская государственная библиотека" url="eidos.rsl.ru" port="210" encoding="UTF-8" recordSyntax="marc21" favorite="">
+        <Z3950_resource name="РГБ - Электронный каталог" url="aleph.rsl.ru" port="9909" database="rsl01" encoding="UTF-8" recordSyntax="marc21" favorite=""/>
+        <Z3950_database name="РГБ - Полнотекстовые книги OREL" database="book" favorite=""/>
+        <Z3950_database name="РГБ - Полнотекстовые учебники OREL" database="boor" favorite=""/>
+        <Z3950_database name="РГБ - Полнотекстовые диссертации OREL" database="fdis" favorite=""/>
+      </Z3950_server>
+      <Z3950_server name="Российская национальная библиотека" url="212.193.3.80" port="210" encoding="koi8-r" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="Библиотека 1-го Кадетского корпуса" database="kadk" favorite=""/>
+        <Z3950_database name="Сводный каталог документов на финно-угорских языках" database="onl_fu" favorite=""/>
+        <Z3950_database name="Каталог авторефератов" database="autoreferat" favorite=""/>
+        <Z3950_database name="Издания на финском языке rossica - Rossica" database="fin" favorite=""/>
+        <Z3950_database name="Иностранная книга XVI в." database="in16" favorite=""/>
+        <Z3950_database name="Каталог изданий на иностранном языке" database="rossica" favorite=""/>
+        <Z3950_database name="Сводный каталог сериальных изданий" database="serial" favorite=""/>
+      </Z3950_server>
+      <Z3950_server name="Всероссийская государственная библиотека иностранной литературы им. М.И.Рудомино" url="zserv.libfl.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ВГБИЛ - Книги" database="books" favorite=""/>
+        <Z3950_database name="ВГБИЛ - Периодика" database="sbo" favorite=""/>
+      </Z3950_server>
+      <Z3950_server name="Госудаственная публичная научно-техническая библиотека России" url="193.233.14.5" port="9999" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ГПНТБ России - Электронный каталог" database="katb" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_group name="Российская Академия Наук" favorite="">
+      <Z3950_resource name="Институт научной информации по общественным наукам РАН" url="bks-mgu.ru" port="210" database="inio" encoding="UTF-8" recordSyntax="marc21" favorite=""/>
+      <Z3950_server name="Центральная научная сельскохозяйственная библиотека РАСХН" url="www.cnshb.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Агрос" database="agros" favorite=""/>
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Журналы" database="jour" favorite=""/>
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Книги до 1995 г." database="book" favorite=""/>
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Книги с 1985 по 1989 гг." database="8589" favorite=""/>
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Книги с 1990 по 1995 гг." database="9095" favorite=""/>
+        <Z3950_database name="ЦНСХБ Россельхозакадемии - Книги с 1999 по 2002 гг." database="tbd1" favorite=""/>
+      </Z3950_server>
+      <Z3950_resource name="Библиотека института вычислительного моделирования СО РАН" url="library.krasn.ru" port="210" database="ccbook" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+    </Z3950_group>
+    <Z3950_group name="Москва" favorite="">
+      <Z3950_server name="Научная библиотека Московского государственного университета им.М.В.Ломоносова" url="bks-mgu.ru" port="210" encoding="UTF-8" recordSyntax="marc21" favorite="">
+        <Z3950_database name="НБ МГУ - Специальные каталоги" database="mgum" favorite=""/>
+        <Z3950_database name="НБ МГУ - Учебники - полные тексты" database="full" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_server name="Санкт-Петербург" url="opac.ruslan.ru" port="210" encoding="koi8-r" recordSyntax="rusmarc" favorite="">
+      <Z3950_server name="Фундаментальная библиотека СПб государственного политехнического университета" url="opac.ruslan.ru" port="211" encoding="utf-8" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ФБ СПбГПУ - Электронный каталог" database="spstu" favorite=""/>
+        <Z3950_database name="ФБ СПбГПУ - Электронная библиотека" database="ebooks" favorite=""/>
+      </Z3950_server>
+      <Z3950_database name="Фундаментальная библиотека СПб государственного электротехнического университета &quot;ЛЭТИ&quot; им. В. И. Ульянова (Ленина)" database="etu" favorite=""/>
+      <Z3950_database name="Фундаментальная библиотека Российского государственного педагогического университета им. Герцена" database="pgu" favorite=""/>
+      <Z3950_database name="Библиотека СПб государственного университета экономики и финансов" database="uef" favorite=""/>
+      <Z3950_database name="Библиотека СПб государственного университета аэрокосмического приборостроения" database="suai" favorite=""/>
+      <Z3950_server name="Библиотека Санкт-Петербургского государственного университета информационных технологий, механики и оптики" url="lib.ifmo.ru" port="210" encoding="utf-8" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="Книги" database="ready_books" favorite=""/>
+        <Z3950_database name="Диссертации" database="disser" favorite=""/>
+      </Z3950_server>
+      <Z3950_resource name="Научная библиотека Санкт-Петербургского государственного университета" url="zgate.lib.pu.ru" port="210" database="unicat" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+      <Z3950_database name="Центральная городская публичная библиотека им. Маяковского" database="mpl" favorite=""/>
+      <Z3950_server name="СПб государственная библиотека для слепых" url="ns1.gbs.spb.ru" port="212" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="СПбГБС - Каталог &quot;cdrom&quot;" database="cdrom" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;graphic&quot;" database="graphic" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;magaz&quot;" database="magaz" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;nmagpl&quot;" database="nmagpl" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;nplain&quot;" database="nplain" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;nrdf&quot;" database="nrdf" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;ntalk&quot;" database="ntalk" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;plain&quot;" database="plain" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;rdf&quot;" database="rdf" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;rdftest&quot;" database="rdftest" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;talk&quot;" database="talk" favorite=""/>
+        <Z3950_database name="СПбГБС - Каталог &quot;talk_mag&quot;" database="talk_mag" favorite=""/>
+      </Z3950_server>
+    </Z3950_server>
+    <Z3950_group name="Брянск" favorite="">
+      <Z3950_server name="Брянская областная научная универсальная библиотека" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="БОНУБ - Книги" database="BONUB.MAIN" favorite=""/>
+        <Z3950_database name="БОНУБ - Краеведение" database="BONUB.KRAY" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_server name="Екатеринбург" url="z3950.usu.ru" port="210" encoding="KOI8-R" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Научная библиотека Уральского государственного университета" database="urgu" favorite=""/>
+      <Z3950_database name="Библиотека Уральской академии государственной службы" database="uapa" favorite=""/>
+      <Z3950_server name="Зональная научная библиотека Уральского государственного технического университета" url="library.ustu.ru" port="2100" encoding="KOI8-R" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ЗНБ УГТУ-УПИ - Электронный каталог" database="book" favorite=""/>
+        <Z3950_database name="ЗНБ УГТУ-УПИ - Состояние и охрана природы на Урале" database="eco" favorite=""/>
+        <Z3950_database name="ЗНБ УГТУ-УПИ - Библиография трудов УГТУ-УПИ" database="ustu" favorite=""/>
+      </Z3950_server>
+      <Z3950_database name="Библиотека Уральской государственной архитектурно-художественной академии" database="usaa" favorite=""/>
+      <Z3950_database name="Свердловская областная универсальная научная библиотека им. В. Г. Белинского" database="sonb" favorite=""/>
+    </Z3950_server>
+    <Z3950_group name="Иваново" favorite="">
+      <Z3950_resource name="Ивановская областная научная библиотека" url="lib.yar.ru" port="210" database="irsl" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+      <Z3950_resource name="Научная библиотека Ивановского государственного университета" url="lib.yar.ru" port="210" database="ivsu" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+    </Z3950_group>
+    <Z3950_group name="Казань" favorite="">
+      <Z3950_server name="Научная библиотека Казанского государственного университета" url="z3950.ksu.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="НБ КГУ" database="kgu" favorite=""/>
+        <Z3950_database name="НБ КГУ - корпорация" database="ucorp" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_group name="Калуга" favorite="">
+      <Z3950_server name="Калужская государственная областная научная библиотека им.Белинского" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="КГОНБ - Книги" database="KGONB.MAIN" favorite=""/>
+        <Z3950_database name="КГОНБ - Краеведение" database="KGONB.KRAY" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_group name="Кострома" favorite="">
+      <Z3950_resource name="Научная библиотека Костромского государственного университета" url="lib.yar.ru" port="210" database="ksu" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+    </Z3950_group>
+    <Z3950_server name="Краснодар" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Краснодарская краевая научная библиотека им. А.С.Пушкина " database="KNB.MAIN" favorite=""/>
+      <Z3950_database name="Орловская областная библиотека им.Н.К.Крупской" database="OPUNB.KRAY" favorite=""/>
+      <Z3950_database name="Псковская областная универсальная научная библиотека" database="POUNB.MAIN" favorite=""/>
+      <Z3950_database name="Научная библиотека Ставропольского государственного университета" database="STAVSU.MAIN" favorite=""/>
+    </Z3950_server>
+    <Z3950_group name="Нижний Новгород" favorite="">
+      <Z3950_group name="Нижегородская областная универсальная научная библиотека" favorite="">
+        <Z3950_resource name="НОУНБ - Книги - с 1992" url="liber.nounb.sci-nnov.ru" port="2100" database="liber" encoding="windows-1251" recordSyntax="rusmarc" favorite=""/>
+      </Z3950_group>
+    </Z3950_group>
+    <Z3950_group name="Омск" favorite="">
+      <Z3950_server name="Омская государственная областная научная библиотека имени А.С.Пушкина" url="kbs.lib.okno.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ОмГОНБ им.А.С.Пушкина - Книги" database="ogonbp_gak" favorite=""/>
+        <Z3950_database name="ОмГОНБ им.А.С.Пушкина - Краеведение" database="ogonbp_region" favorite=""/>
+      </Z3950_server>
+      <Z3950_group name="Омский Государственный Университет им.Ф.М.Достоевского" favorite="">
+        <Z3950_group name="Полнотекстовая библиотека Z-elib " favorite="">
+          <Z3950_resource name="Материалы для ЕГЭ по математике" url="elib.omsu.ru" port="210" database="ege" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+          <Z3950_resource name="Полнотекстовые материалы по этнографии" url="elib.omsu.ru" port="210" database="ethno" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+          <Z3950_resource name="Полнотекстовые статьи и книги" url="elib.omsu.ru" port="210" database="ptd" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+          <Z3950_resource name="Электронные коллекции и библиотечные системы" url="elib.omsu.ru" port="210" database="library" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+		  <Z3950_resource name="Вестник ОМГУ" url="elib.omsu.ru" port="210" database="vestnik" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+        </Z3950_group>
+        <Z3950_group name="Тестовая бибилотека для тренировки авторов" favorite="">
+          <Z3950_resource name="Примеры УМП" url="testlib.omsu.ru" port="210" database="example" encoding="cp1251" recordSyntax="rusmarc" authName="" authPasswd="" favorite=""/>
+        </Z3950_group>
+      </Z3950_group>
+    </Z3950_group>
+    <Z3950_server name="Орел" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Орловская областная библиотека им.Н.К.Крупской" database="OPUNB.KRAY" favorite=""/>
+    </Z3950_server>
+    <Z3950_server name="Псков" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Псковская областная универсальная научная библиотека" database="POUNB.MAIN" favorite=""/>
+    </Z3950_server>
+    <Z3950_group name="Саратов" favorite="">
+      <Z3950_server name="Саратовская областная универсальная научная библиотека" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="СОУНБ - Книги" database="SOUNB.MAIN" favorite=""/>
+        <Z3950_database name="СОУНБ - Краеведение" database="SOUNB.KRAY" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_server name="Ставрополь" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Ставропольская краевая универсальная научная библиотека им. М.Ю.Лермонтова" database="SKUNB.MAIN" favorite=""/>
+      <Z3950_database name="Научная библиотека Ставропольского государственного университета" database="STAVSU.MAIN" favorite=""/>
+    </Z3950_server>
+    <Z3950_group name="Тверь" favorite="">
+      <Z3950_server name="Научная библиотека Тверского государственного университета" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="НБТГУ - Книги" database="TVERSU.MAIN" favorite=""/>
+        <Z3950_database name="НБТГУ - Краеведение" database="TVERSU.KRAY" favorite=""/>
+        <Z3950_database name="НБТГУ - Подписка" database="TVERSU.PODP" favorite=""/>
+        <Z3950_database name="НБТГТУ - Книги" database="TSTU.MAIN" favorite=""/>
+        <Z3950_database name="НБТГТУ - Подписка" database="TSTU.PODP" favorite=""/>
+        <Z3950_database name="ТОУНБ - Книги" database="TOUNB.MAIN" favorite=""/>
+        <Z3950_database name="ТОУНБ - Электронные ресурсы" database="TOUNB.ER" favorite=""/>
+        <Z3950_database name="ТОУНБ - Ресурсы интернет" database="TOUNB.INET" favorite=""/>
+        <Z3950_database name="ТЦБС - Краеведение" database="TORZH.KRAY" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_group name="Тула" favorite="">
+      <Z3950_server name="Тульская областная универсальная научная библиотека" url="z39.library.tver.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+        <Z3950_database name="ТОУНБ - Книги" database="TUOUNB.MAIN" favorite=""/>
+        <Z3950_database name="ТОУНБ - Краеведение" database="TUOUNB.KRAY" favorite=""/>
+        <Z3950_database name="ТОУНБ - Статьи" database="TUOUNB.CKC" favorite=""/>
+        <Z3950_database name="ТОУНБ - Тула - научная" database="TUOUNB.TULASCI" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_server name="Ярославль" url="lib.yar.ru" port="210" encoding="windows-1251" recordSyntax="rusmarc" favorite="">
+      <Z3950_database name="Научная библиотека Ярославского государственного университета" database="yarsu" favorite=""/>
+      <Z3950_database name="Научно-техническая библиотека Ярославского государственного технического университета" database="yarstu" favorite=""/>
+      <Z3950_database name="Научная медицинская библиотека Ярославской государственной медицинской академии" database="yarsma" favorite=""/>
+      <Z3950_database name="Научная библиотека Международного университета бизнеса и новых технологий" database="iubnt" favorite=""/>
+      <Z3950_database name="Научная библиотека Ярославского государственного историко-архитектурного и художественного музея-заповедника" database="yarmp" favorite=""/>
+      <Z3950_database name="Централизованная библиотечная система города Ярославля" database="yarcls" favorite=""/>
+      <Z3950_database name="Центральная научно-техническая библиотека ЦНТИ (Ярославль)" database="yarcsti" favorite=""/>
+      <Z3950_database name="Электронная библиотека Ярославля" database="elib" favorite=""/>
+      <Z3950_database name="Ярославская областная детская библиотека" database="yarrbl" favorite=""/>
+      <Z3950_database name="Ярославская областная научная медицинская библиотека" database="yarrsml" favorite=""/>
+      <Z3950_database name="Ярославская областная универсальная научная библиотека" database="yarrsl" favorite=""/>
+    </Z3950_server>
+  </Z3950_group>
+  <Z3950_group name="Зарубежные" favorite="">
+    <Z3950_group name="Соединенные Штаты Америки" favorite="">
+      <Z3950_server name="Library of Congress" url="z3950.loc.gov" port="7090" encoding="iso-8859-1" recordSyntax="usmarc" favorite="">
+        <Z3950_database name="LOC - Online Catalog" database="voyager" favorite=""/>
+        <Z3950_resource name="LOC - National Library Service for the Blind and Physically Handicapped International Union Catalog" url="z3950.loc.gov" port="7490" database="voyager" encoding="iso-8859-1" recordSyntax="usmarc" favorite=""/>
+      </Z3950_server>
+    </Z3950_group>
+    <Z3950_group name="Франция" favorite="">
+      <Z3950_resource name="Le catalogue du Système Universitaire de Documentation" url="carmin.sudoc.abes.fr" port="8859" database="abes-z39-public" encoding="" recordSyntax="unimarc" authName="" authPasswd="" favorite=""/>
+    </Z3950_group>
+  </Z3950_group>
+</Z3950_resources>
