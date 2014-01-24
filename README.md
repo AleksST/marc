@@ -1,36 +1,49 @@
 marc
 ====
+<b>
+  The goal of this project is create web-tool for librarian to work with marc-records.<br>
+  Supported formats: rusmarc, usmarc, unimarc, marc21
+</b>
 
+<b><i>TODO list: </i><b>
 
-The goal of this project is create web-tool for librarian to work with marc-records.
-Supported formates: rusmarc, usmarc, unimarc, marc21
+<dl><dt>Create records parsers</dt>
+    <dd><ul>
+      <li>binary marc-record parser 
+      <li>XML-record parser
+    </dd>
+</dl>
 
+<dl><dt>Validate record according there format</dt>
+  <dd><ul>
+    <li>validate rusmarc records
+    <li>validate unimarc records
+    <li>validate usmarc records
+    <li>validate marc21 records
+  </dd>
+</dl>
 
-TODO list:
+<dl><dt>Visual interface for marc-records display</dt>
+  <dd><ul>
+    <li>Simple display tool with notice and errors (see validation)
+    <li>Hierarchical records display tool
+  </dd>
+</dl>
 
-Create records parsers
-  binary marc-record parser
-  XML-record parser
+<dl><dt>File validation tool</dt>
+  <dd><ul>
+    <li>Upload, validate & display records 
+  </dd>
+</dl>
 
-Validate record according there format
-  validate rusmarc records
-  validate unimarc records
-  validate usmarc records
-  validate marc21 records
-
-Visual interface for marc-records display
-  Simple display tool with notice and errors (see validation)
-  Hierarchical records display tool
-
-File validation tool 
-  Upload, validate & display records 
-
-Z39.50(yaz) search mechanism 
-  RPN-query conctructor (http://www.indexdata.com/zebra/doc/querymodel-rpn.html)
-  Create open YAZ-servers repository
-  Possibility add another open-servers online
-  Native (rpn-query) request form for professionals
-  Simple requests form (html form)
-  Advanced requests form (html form)
-  
+<dl><dt>Z39.50(yaz) search mechanism</dt>
+  <dd><ul>
+    <li>RPN-query conctructor (http://www.indexdata.com/zebra/doc/querymodel-rpn.html)
+    <li>Create open YAZ-servers repository
+    <li>Possibility add another open-servers online
+    <li>Native (rpn-query) request form for professionals
+    <li>Simple requests form (html form)
+    <li>Advanced requests form (html form)
+  </dd>
+ </dl> 
   
