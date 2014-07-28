@@ -27,6 +27,10 @@ body {
 .record-short:before{
     content: "Record #" counter(item) ": ";
 }
+.record-list {
+	margin-left: 25px;
+	display: inline-block;
+}
 .record-full {
     padding-left: 25px;
     display: none;

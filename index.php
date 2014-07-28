@@ -20,7 +20,7 @@ $path = './test_files/TEST1.ISO';
 //$rm->display();
 
 $rm = Marc::factory('rusmarc');
-$rm->setRecordsLimit(50);
+$rm->setRecordsLimit(10);
 $records_count = count($rm->parseFile($path));
 ?>
 <html>
@@ -43,8 +43,10 @@ $records_count = count($rm->parseFile($path));
         </script>
     </header>
     <body>
-    <?= $rm->display(); ?>
-    <?php 
+    <?= $rm->displayTree(); ?>
+
+	<br>
+    <?php
         $time = microtime(true) - $start_time;
         printf("Records: %5d <br>", $records_count);
         printf("Max memory: %5.2f K <br>", memory_get_peak_usage()/1024);

@@ -22,6 +22,7 @@ abstract class Marc {
     protected $Extractor;
 
     protected $records = array();
+    protected $recordsTreeMap = array();
     protected $errors = array();
 
     protected $recordsLimit = 0;
@@ -97,43 +98,19 @@ abstract class Marc {
         $this->Validator = $validator->setFormat($this);
     }
 
-
     protected function createRecordsList(){
 
         $this->setParentAndChilds();
+		$this->ganerateTree();
 
-        $top = array();
-        $record = new Record;
-
-        foreach ($this->records as $record) {
-            if (count($record->getChildrenIds()) && !$record->getParentId()) {
-                $top[$record->getId()] = $record->getChildrenIds();
-            }
-
-            if (count($record->getChildrenIds()) && $record->getParentId()) {
-                $top[$record->getId()] = $record->getChildrenIds();
-            }
-
-//            if (count($record->getChildrenIds()) && $record->getParentId()) {
-//                $parent_id = $this->records[$record->getParentId()]->getId();
-//                $top[$parent_id][$record->getId()] = $record->getChildrenIds();
-//            }
-//
-//            if ($record->getParentId() && !array_key_exists($record->getParentId(), $top)) {
-//                $top['noparent'][] = $record->getId();
-//            }
-        }
-        // var_dump($top);
-
-        return $this->records;
+		return $this->recordsTreeMap;
     }
 
-    private function setParentAndChilds(){
+	private function setParentAndChilds(){
 
         foreach ($this->records as $record){
-            $parent_id = $record->getParentId();
-            if(array_key_exists($parent_id, $this->records)){
-                $this->records[$parent_id]->setChildId($record->getId());
+            if(array_key_exists($record->getParentId(), $this->records)){
+                $this->records[$record->getParentId()]->setChildId($record->getId());
             }
         }
 
@@ -146,17 +123,49 @@ abstract class Marc {
         }
     }
 
-    public function display(){
-        echo '<div class="record-list">';
+	private function ganerateTree() {
+
+		foreach ($this->records as $record) {
+            $id = $record->getId();
+			$parent_id = (array_key_exists($record->getParentId(), $this->records))
+					? $record->getParentId() : null;
+			$top_id = ($parent_id) ? $this->records[$parent_id]->getParentId() : null;
+
+			if ($top_id) {
+				$this->recordsTreeMap[$top_id][$parent_id][] = $id;
+			} elseif ($parent_id && empty($this->recordsTreeMap[$parent_id][$id])) {
+				$this->recordsTreeMap[$parent_id][] = $id;
+			} elseif (empty($this->recordsTreeMap[$id])) {
+				$this->recordsTreeMap[] = $id;
+			}
+        }
+	}
+
+	public function display(){
+		echo '<div class="record-list">';
         foreach ($this->records as $record) {
             echo '<div class="record" id="' . $record->getId() . '">';
             $this->displayRecord($record);
             echo '</div>';
          }
-         echo '</div>';
+		echo '</div>';
     }
 
-    private function displayRecord(Record $record){
+	public function displayTree($node = null) {
+
+		$node = $node ?: $this->recordsTreeMap;
+		echo '<div class="record-list">';
+        foreach ($node as $id => $elems) {
+			$id =  is_array($elems) ? $id : $elems;
+			echo '<div class="record" id="' . $id . '">';
+			$this->displayRecord($this->records[$id]);
+			is_array($elems) ? $this->displayTree($elems) : '';
+			echo '</div>';
+		}
+		echo '</div>';
+	}
+
+	private function displayRecord(Record $record){
         echo '<div class="record-short">' . $record->getId() . '</div>';
 
         echo '<div class="record-full">';
@@ -188,7 +197,8 @@ abstract class Marc {
     }
 
     private function displayField(Field $field){
-        $errors = (array)$field->getErrors();
+
+		$errors = (array)$field->getErrors();
         $info = (array)$field->getInfo();
 
         echo '<div class="field-error">';
@@ -228,7 +238,8 @@ abstract class Marc {
     }
 
     private function displayLinkedField(Field $field){
-        $prefix = $this->getIndicatorsAndTag($field->getParentField())
+
+		$prefix = $this->getIndicatorsAndTag($field->getParentField())
                 . $this->getIndicatorsAndTag($field);
 
         foreach ($field->getSubfields() as $code=>$subfields){
