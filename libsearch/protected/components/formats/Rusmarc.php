@@ -20,7 +20,7 @@ class Rusmarc extends Marc {
     public function __construct($structureFileName = null) {
 
         if(null === $structureFileName) {
-            $structureFileName = './Formats/rusmarc.xml';
+            $structureFileName = __DIR__ . '/rusmarc.xml';
         }
         $this->Structure = simplexml_load_file($structureFileName);
     }

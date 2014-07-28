@@ -16,6 +16,10 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.components.extractors.*',
+		'application.components.parsers.*',
+		'application.components.validators.*',
+		'application.components.formats.*',
 	),
 
 	'modules'=>array(

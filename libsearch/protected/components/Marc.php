@@ -1,10 +1,4 @@
 <?php
-// rewrite: use autoload
-require_once 'Formats/Rusmarc.php';
-require_once 'Extractors/FileExtractor.php';
-require_once 'Extractors/ZebrasrvExtractor.php';
-require_once 'Parsers/BinaryRecordParser.php';
-require_once 'Validators/RusmarcValidator.php';
 
 abstract class Marc {
 
@@ -64,6 +58,10 @@ abstract class Marc {
                 return $marc;
             default : throw new Exception('Unknown format : ' . $format);
         }
+    }
+
+    public function getRecords() {
+        return $this->records;
     }
 
     public function setRecordsLimit($limit = 0){
@@ -127,7 +125,6 @@ abstract class Marc {
     }
 
 	private function ganerateTree() {
-
 		foreach ($this->records as $record) {
             $id = $record->getId();
 			$parent_id = (array_key_exists($record->getParentId(), $this->records))
@@ -143,124 +140,4 @@ abstract class Marc {
 			}
         }
 	}
-
-	public function display(){
-		echo '<div class="record-list">';
-        foreach ($this->records as $record) {
-            echo '<div class="record" id="' . $record->getId() . '">';
-            $this->displayRecord($record);
-            echo '</div>';
-         }
-		echo '</div>';
-    }
-
-	public function displayTree($node = null) {
-
-		$node = $node ?: $this->recordsTreeMap;
-		echo '<div class="record-list">';
-        foreach ($node as $id => $elems) {
-			$id =  is_array($elems) ? $id : $elems;
-			echo '<div class="record" id="' . $id . '">';
-			$this->displayRecord($this->records[$id]);
-			is_array($elems) && $this->displayTree($elems);
-			echo '</div>';
-		}
-		echo '</div>';
-	}
-
-	private function displayRecord(Record $record){
-        echo '<div class="record-short">' . $record->getId() . '</div>';
-
-        echo '<div class="record-full">';
-
-            $errors = (array)$record->getErrors();
-            $info = (array)$record->getInfo();
-
-            echo '<div class="record-error">';
-            foreach ($errors as $msg){
-                echo '<div class="record-msg">' . $msg . '</div>';
-            }
-            echo '</div>';
-
-            echo '<div class="record-info">';
-            foreach ($info as $msg){
-                echo '<div class="record-msg">' . $msg . '</div>';
-            }
-            echo '</div>';
-
-            foreach ($record->getFields() as $tag=>$fields){
-                echo '<div class="field" tag="' . $tag . '">';
-                foreach ($fields as $field) {
-                    $this->displayField($field);
-                }
-                echo '</div>';
-            }
-
-        echo '</div>';
-    }
-
-    private function displayField(Field $field){
-
-		$errors = (array)$field->getErrors();
-        $info = (array)$field->getInfo();
-
-        echo '<div class="field-error">';
-        foreach ($errors as $msg){
-            echo '<div class="field-msg">' . $msg . '</div>';
-        }
-        echo '</div>';
-
-        echo '<div class="field-info">';
-        foreach ($info as $msg){
-            echo '<div class="field-msg">' . $msg . '</div>';
-        }
-        echo '</div>';
-
-        foreach ($field->getFields() as $tag=>$linked_fields){
-            echo '<div class="linked-fields" tag="' . $tag . '">';
-            foreach ($linked_fields as $linked_field){
-                $this->displayLinkedField($linked_field);
-            }
-            echo '</div>';
-        }
-
-        $prefix = $this->getIndicatorsAndTag($field);
-        foreach ($field->getSubfields() as $code=>$subfields){
-            echo '<div code="' . $code . '">';
-            foreach ($subfields as $subfield){
-                echo $prefix . $code . ' | ';
-                $this->displaySubfield($subfield);
-            }
-            echo '</div>';
-        }
-
-        if($value = $field->getValue()){
-            echo $prefix;
-            echo $value;
-        }
-    }
-
-    private function displayLinkedField(Field $field){
-
-		$prefix = $this->getIndicatorsAndTag($field->getParentField())
-                . $this->getIndicatorsAndTag($field);
-
-        foreach ($field->getSubfields() as $code=>$subfields){
-            echo '<div code="' . $code . '">';
-            foreach ($subfields as $subfield){
-                echo $prefix . $code . ' | ';
-                $this->displaySubfield($subfield);
-            }
-            echo '</div>';
-        }
-    }
-
-    private function displaySubfield(Subfield $subfield){
-        echo $subfield->getValue();
-    }
-
-    private function getIndicatorsAndTag(Field $field){
-        return  str_replace(' ', '#', $field->getIndicator(1) . $field->getIndicator(2))
-                . ' | ' . str_pad($field->getTag(), 3, '0', STR_PAD_LEFT) . ' | ';
-    }
 }

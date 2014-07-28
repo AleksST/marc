@@ -67,3 +67,187 @@ Stack trace:
 REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
 HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/page&view=about
 ---
+2014/07/29 00:59:58 [error] [php] include(AppController.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(4): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(354): require()
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#3 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (4)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:08:19 [error] [php] include(AppController.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(4): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(354): require()
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(276): CWebApplication->createController()
+#3 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (4)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:11:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in /home/aleks/www/marc/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(270): CController->missingAction('login')
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#3 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#5 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/contact
+---
+2014/07/29 01:11:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "page".' in /home/aleks/www/marc/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(270): CController->missingAction('page')
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#3 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#5 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/page&view=about
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/index
+---
+2014/07/29 01:11:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "contact".' in /home/aleks/www/marc/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(270): CController->missingAction('contact')
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/contact')
+#3 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#5 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/contact
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/page&view=about
+---
+2014/07/29 01:11:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in /home/aleks/www/marc/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(270): CController->missingAction('login')
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#3 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#5 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/contact
+---
+2014/07/29 01:24:49 [error] [php] include(Marc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:27:17 [error] [php] include(Marc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:27:21 [error] [php] include(Marc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:27:27 [error] [php] include(Marc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:27:30 [error] [php] include(Marc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): spl_autoload_call()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:34:22 [error] [php] include(Rusmarc.php): failed to open stream: No such file or directory (/home/aleks/www/marc/yii/framework/YiiBase.php:432)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/components/Marc.php(61): spl_autoload_call()
+#1 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): factory()
+#2 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#5 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#7 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#8 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/components/Marc.php (61)
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/07/29 01:36:59 [error] [php] simplexml_load_file(): I/O warning : failed to load external entity &quot;rusmarc.xml&quot; (/home/aleks/www/marc/libsearch/protected/components/formats/Rusmarc.php:25)
+Stack trace:
+#0 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(15): factory()
+#1 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#5 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#6 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#8 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/components/formats/Rusmarc.php (25)
+in /home/aleks/www/marc/libsearch/protected/components/Marc.php (61)
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (15)
+2014/07/29 02:02:58 [error] [php] Undefined variable: marc (/home/aleks/www/marc/libsearch/protected/views/site/index.php:2)
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(869): SiteController->renderFile()
+#1 /home/aleks/www/marc/yii/framework/web/CController.php(782): SiteController->renderPartial()
+#2 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(18): SiteController->render()
+#3 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#10 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/index.php
+in /home/aleks/www/marc/libsearch/protected/views/site/index.php (2)
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (18)
+in /home/aleks/www/marc/libsearch/public/index.php (10)

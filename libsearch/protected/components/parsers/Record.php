@@ -30,7 +30,7 @@ class Record {
 
     /**
      * @param string $msg
-     * @param string $type
+     * @internal param string $type
      * @return Record
      */
     public function setInfo($msg){
@@ -64,6 +64,7 @@ class Record {
     }
 
     /**
+     * @param Field $field
      * @return Record
      */
     public function addField(Field $field){
@@ -84,6 +85,7 @@ class Record {
     }
 
     /**
+     * @param string $id
      * @return Record
      */
     public function setId($id) {
@@ -96,6 +98,7 @@ class Record {
     }
 
     /**
+     * @param string $id
      * @return Record
      */
     public function setParentId($id) {
@@ -108,6 +111,7 @@ class Record {
     }
 
     /**
+     * @param string $id
      * @return Record
      */
     public function setChildId($id) {
@@ -121,6 +125,7 @@ class Record {
     }
 
     /**
+     * @param string $id
      * @return Record
      */
     public function setRelevantId($id) {
@@ -134,6 +139,7 @@ class Record {
     }
 
     /**
+     * @param string $leader
      * @return Record
      */
     public function setLeader($leader){

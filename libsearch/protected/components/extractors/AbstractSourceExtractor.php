@@ -3,7 +3,7 @@
 abstract class AbstractSourceExtractor{
     protected $records = array();
     /**
-     * @var RecordStructure
+     * @var AbstractRecordParser
      */
     protected $recordParser;
 
