@@ -28,6 +28,9 @@ class ZebrasrvExtractor extends AbstractSourceExtractor{
         ;
     }
 
+    /**
+     * @return bool|Record
+     */
     public function getNextRecord() {
 
         if ($this->recordsRead >= $this->recordsLimit && $this->recordsLimit !== 0) {

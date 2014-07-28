@@ -4,24 +4,19 @@ header('Content-Type: text/html; charset=utf-8');
 ini_set('xdebug.var_display_max_depth', 12);
 
 include_once './Marc.php';
-$path = './test_files/TEST1.ISO';
+//$path = './test_files/TEST1.ISO';
 
-// $source = [
-//     'host' => '193.233.14.5',
-//     'port' => '9999',
-//     'database' => 'katb',
-//     'charset' => 'windows-1251',
-//     'syntax' => 'rusmarc',
-// ];
-
-//$rm = Marc::factory('rusmarc');
-//$rm->setRecordsLimit(50);
-//$records_count = count($rm->parseZServer($source, []));
-//$rm->display();
-
+ $source = [
+     'host' => '193.233.14.5',
+     'port' => '9999',
+     'database' => 'katb',
+     'charset' => 'windows-1251',
+     'syntax' => 'rusmarc',
+ ];
+/** @var Rusmarc $rm */
 $rm = Marc::factory('rusmarc');
-$rm->setRecordsLimit(10);
-$records_count = count($rm->parseFile($path));
+$rm->setRecordsLimit(50);
+$records_count = count($rm->parseZServer($source, []));
 ?>
 <html>
     <header>
@@ -43,7 +38,7 @@ $records_count = count($rm->parseFile($path));
         </script>
     </header>
     <body>
-    <?= $rm->displayTree(); ?>
+    <?php $rm->display(); ?>
 
 	<br>
     <?php

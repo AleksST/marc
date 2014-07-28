@@ -21,6 +21,9 @@ abstract class Marc {
      */
     protected $Extractor;
 
+    /**
+     * @var Record[]
+     */
     protected $records = array();
     protected $recordsTreeMap = array();
     protected $errors = array();
@@ -100,13 +103,13 @@ abstract class Marc {
 
     protected function createRecordsList(){
 
-        $this->setParentAndChilds();
+        $this->setParentAndChildren();
 		$this->ganerateTree();
 
 		return $this->recordsTreeMap;
     }
 
-	private function setParentAndChilds(){
+	private function setParentAndChildren(){
 
         foreach ($this->records as $record){
             if(array_key_exists($record->getParentId(), $this->records)){
@@ -159,7 +162,7 @@ abstract class Marc {
 			$id =  is_array($elems) ? $id : $elems;
 			echo '<div class="record" id="' . $id . '">';
 			$this->displayRecord($this->records[$id]);
-			is_array($elems) ? $this->displayTree($elems) : '';
+			is_array($elems) && $this->displayTree($elems);
 			echo '</div>';
 		}
 		echo '</div>';

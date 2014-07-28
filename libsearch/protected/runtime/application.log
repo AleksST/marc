@@ -1,0 +1,69 @@
+2014/07/29 00:18:33 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/aleks/www/marc/libsearch/public/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /home/aleks/www/marc/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/aleks/www...')
+#1 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /home/aleks/www/marc/yii/framework/web/CClientScript.php(511): CAssetManager->publish('/home/aleks/www...')
+#3 /home/aleks/www/marc/yii/framework/web/CClientScript.php(548): CClientScript->getCoreScriptUrl()
+#4 /home/aleks/www/marc/yii/framework/web/CClientScript.php(349): CClientScript->getPackageBaseUrl('jquery')
+#5 /home/aleks/www/marc/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /home/aleks/www/marc/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html>...')
+#7 /home/aleks/www/marc/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html>...')
+#8 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(72): CController->render('contact', Array)
+#9 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionContact()
+#10 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /home/aleks/www/marc/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /home/aleks/www/marc/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('contact')
+#14 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/contact')
+#15 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#16 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#17 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/contact
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/page&view=about
+---
+2014/07/29 00:18:33 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/aleks/www/marc/libsearch/public/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /home/aleks/www/marc/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/aleks/www...')
+#1 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /home/aleks/www/marc/yii/framework/web/CClientScript.php(511): CAssetManager->publish('/home/aleks/www...')
+#3 /home/aleks/www/marc/yii/framework/web/CClientScript.php(548): CClientScript->getCoreScriptUrl()
+#4 /home/aleks/www/marc/yii/framework/web/CClientScript.php(349): CClientScript->getPackageBaseUrl('jquery')
+#5 /home/aleks/www/marc/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /home/aleks/www/marc/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html>...')
+#7 /home/aleks/www/marc/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html>...')
+#8 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#9 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /home/aleks/www/marc/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /home/aleks/www/marc/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#16 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#17 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/page&view=about
+---
+2014/07/29 00:19:05 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/aleks/www/marc/libsearch/public/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /home/aleks/www/marc/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/aleks/www...')
+#1 /home/aleks/www/marc/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /home/aleks/www/marc/yii/framework/web/CClientScript.php(511): CAssetManager->publish('/home/aleks/www...')
+#3 /home/aleks/www/marc/yii/framework/web/CClientScript.php(548): CClientScript->getCoreScriptUrl()
+#4 /home/aleks/www/marc/yii/framework/web/CClientScript.php(349): CClientScript->getPackageBaseUrl('jquery')
+#5 /home/aleks/www/marc/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /home/aleks/www/marc/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html>...')
+#7 /home/aleks/www/marc/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html>...')
+#8 /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#9 /home/aleks/www/marc/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /home/aleks/www/marc/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /home/aleks/www/marc/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#16 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#17 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/login
+HTTP_REFERER=http://skylib/marc/libsearch/public/index.php?r=site/page&view=about
+---
