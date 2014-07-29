@@ -1,6 +1,7 @@
 <?php
 
-class Record {
+class Record
+{
 
     private $id;
     private $parentId;
@@ -15,7 +16,7 @@ class Record {
     /**
      * @return Record
      */
-    public static function getInstance(){
+    public static function getInstance() {
         return new self;
     }
 
@@ -23,7 +24,7 @@ class Record {
      * @param string $msg
      * @return Record
      */
-    public function setError($msg){
+    public function setError($msg) {
         $this->errors[] = $msg;
         return $this;
     }
@@ -33,16 +34,16 @@ class Record {
      * @internal param string $type
      * @return Record
      */
-    public function setInfo($msg){
+    public function setInfo($msg) {
         $this->info[] = $msg;
         return $this;
     }
 
-    public function getErrors(){
+    public function getErrors() {
         return $this->errors;
     }
 
-    public function getInfo(){
+    public function getInfo() {
         return $this->info;
     }
 
@@ -52,14 +53,14 @@ class Record {
      */
     public function getField($tag) {
 
-        if(!$this->isFieldExists($tag)){
+        if (!$this->isFieldExists($tag)) {
             return false;
         }
 
         return $this->fields[$tag];
     }
 
-    public function isFieldExists($tag){
+    public function isFieldExists($tag) {
         return array_key_exists((int)$tag, $this->fields);
     }
 
@@ -67,10 +68,10 @@ class Record {
      * @param Field $field
      * @return Record
      */
-    public function addField(Field $field){
+    public function addField(Field $field) {
         $tag = (int)$field->getTag();
 
-        if($tag === 1) {
+        if ($tag === 1) {
             $this->setId($field->getValue());
         }
 
@@ -80,7 +81,7 @@ class Record {
         return $this;
     }
 
-    public function getId(){
+    public function getId() {
         return $this->id;
     }
 
@@ -93,7 +94,7 @@ class Record {
         return $this;
     }
 
-    public function getParentId(){
+    public function getParentId() {
         return $this->parentId;
     }
 
@@ -106,7 +107,7 @@ class Record {
         return $this;
     }
 
-    public function getChildrenIds(){
+    public function getChildrenIds() {
         return $this->childrenIds;
     }
 
@@ -120,7 +121,7 @@ class Record {
         return $this;
     }
 
-    public function getRelevantIds(){
+    public function getRelevantIds() {
         return $this->relevantIds;
     }
 
@@ -134,7 +135,7 @@ class Record {
         return $this;
     }
 
-    public function getLeader(){
+    public function getLeader() {
         return $this->leader;
     }
 
@@ -142,38 +143,38 @@ class Record {
      * @param string $leader
      * @return Record
      */
-    public function setLeader($leader){
+    public function setLeader($leader) {
         $this->leader = $leader;
         return $this;
     }
 
-    public function getFields(){
+    public function getFields() {
         return $this->fields;
     }
 
-    public function setEncode($encode){
+    public function setEncode($encode) {
         $this->encode = $encode;
         return $this;
     }
 
-    public function getEncode(){
+    public function getEncode() {
         return $this->encode;
     }
 
-    public function toUnicode(){
+    public function toUnicode() {
         return $this->convertToUnicode('utf-8');
     }
 
-    public function convertToUnicode($encode = 'utf-8'){
+    public function convertToUnicode($encode = 'utf-8') {
 
-        if(!$this->encode || $this->encode == $encode){
+        if (!$this->encode || $this->encode == $encode) {
             return $this;
         }
-        
+
         $this->setId(iconv($this->encode, $encode, $this->getId()));
 
-        foreach ($this->getFields() as $fields){
-            foreach ($fields as $field){
+        foreach ($this->getFields() as $fields) {
+            foreach ($fields as $field) {
                 $this->fieldToEncode($field, $encode);
             }
         }
@@ -181,21 +182,21 @@ class Record {
         return $this->setEncode($encode);
     }
 
-    private function fieldToEncode(Field $field, $out_encode){
+    private function fieldToEncode(Field $field, $out_encode) {
 
         $field->setValue(iconv($this->encode, $out_encode, $field->getValue()));
 
-        if(is_array($field->getFields())){
-            foreach ($field->getFields() as $linkedfields){
-                foreach ($linkedfields as $linkedfield){
+        if (is_array($field->getFields())) {
+            foreach ($field->getFields() as $linkedfields) {
+                foreach ($linkedfields as $linkedfield) {
                     $this->fieldToEncode($linkedfield, $out_encode);
                 }
             }
         }
 
-        if(is_array($field->getSubfields())){
-            foreach ($field->getSubfields() as $subfields){
-                foreach ($subfields as $subfield){
+        if (is_array($field->getSubfields())) {
+            foreach ($field->getSubfields() as $subfields) {
+                foreach ($subfields as $subfield) {
                     $subfield->setValue(iconv($this->encode, $out_encode, $subfield->getValue()));
                 }
             }

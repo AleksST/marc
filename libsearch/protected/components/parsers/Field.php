@@ -1,6 +1,7 @@
 <?php
 
-class Field {
+class Field
+{
 
     private $tag;
     private $parantField = null;
@@ -25,7 +26,7 @@ class Field {
     /**
      * @return Field
      */
-    public static function getInstance($tag = 999){
+    public static function getInstance($tag = 999) {
         $instance = new self;
         return $instance->setTag($tag);
     }
@@ -34,22 +35,22 @@ class Field {
      * @return Field
      */
     public function setTag($tag) {
-        $tag = (int) $tag;
-        if( !($tag > 0 && $tag < 1000) ){
+        $tag = (int)$tag;
+        if (!($tag > 0 && $tag < 1000)) {
             throw new Exception('Field::setTag ');
         }
         $this->tag = $tag;
         return $this;
     }
 
-    public function getTag(){
+    public function getTag() {
         return $this->tag;
     }
 
-    public function setRecord(Record $record = null){
+    public function setRecord(Record $record = null) {
         $this->record = $record;
-        foreach ($this->getFields() as $fields){
-            foreach ($fields as $field){
+        foreach ($this->getFields() as $fields) {
+            foreach ($fields as $field) {
                 $field->setRecord($record);
             }
         }
@@ -59,7 +60,7 @@ class Field {
      *
      * @return Record
      */
-    public function getRecord(){
+    public function getRecord() {
         return $this->record;
     }
 
@@ -67,7 +68,7 @@ class Field {
      * @return Field
      */
     public function setName($name) {
-        $this->name = (string) $name;
+        $this->name = (string)$name;
         return $this;
     }
 
@@ -81,21 +82,21 @@ class Field {
     }
 
     private function setInd1($ind1) {
-        if(strlen($ind1) !== 1) {
+        if (strlen($ind1) !== 1) {
             throw new Exception('Field::setInd1');
         }
         $this->ind1 = $ind1;
     }
 
     private function setInd2($ind2) {
-        if(strlen($ind2) !== 1) {
+        if (strlen($ind2) !== 1) {
             throw new Exception('Field::setInd2');
         }
         $this->ind2 = $ind2;
     }
 
     public function getIndicator($num) {
-        if(in_array($num, array(1,2))){
+        if (in_array($num, array(1, 2))) {
             return $this->{"ind$num"};
         }
         return false;
@@ -108,49 +109,49 @@ class Field {
     /**
      * @return Field
      */
-    public function setControlField(){
+    public function setControlField() {
         $this->isLinkedEntry = false;
         $this->isData = false;
         $this->isControl = true;
         return $this;
     }
 
-    public function isControlField(){
+    public function isControlField() {
         return $this->isControl;
     }
 
     /**
      * @return Field
      */
-    public function setDataField(){
+    public function setDataField() {
         $this->isLinkedEntry = false;
         $this->isData = true;
         $this->isControl = false;
         return $this;
     }
 
-    public function isDataField(){
+    public function isDataField() {
         return $this->isData;
     }
 
     /**
      * @return Field
      */
-    public function setLinkedEntryField(){
+    public function setLinkedEntryField() {
         $this->isLinkedEntry = true;
         $this->isData = false;
         $this->isControl = false;
         return $this;
     }
 
-    public function isLinkedEntryField(){
+    public function isLinkedEntryField() {
         return $this->isLinkedEntry;
     }
 
     /**
      * @return Field
      */
-    public function addSubfield(Subfield $subfield){
+    public function addSubfield(Subfield $subfield) {
         $subfield->setField($this);
         $this->subfields[$subfield->getCode()][] = $subfield->setTag($this->getTag());
         return $this;
@@ -159,21 +160,21 @@ class Field {
     /**
      * @return Field
      */
-    public function addSubfields($subfields){
+    public function addSubfields($subfields) {
         foreach ($subfields as $subfield) {
             $this->addSubfield($subfield);
         }
         return $this;
     }
 
-    public function getSubfield($code){
+    public function getSubfield($code) {
         return $this->subfields[$code];
     }
 
     /**
      * @return Field
      */
-    public function addField(Field $field){
+    public function addField(Field $field) {
         $field->setParentField($this);
         $field->setRecord($this->getRecord());
         $this->setLinkedEntryField(true);
@@ -181,18 +182,18 @@ class Field {
         return $this;
     }
 
-    public function setParentField(Field $field){
+    public function setParentField(Field $field) {
         $this->parantField = $field;
     }
 
-    public function getFields(){
+    public function getFields() {
         return $this->fields;
     }
 
     /**
      * @return Field
      */
-    public function getField($tag){
+    public function getField($tag) {
         return $this->fields[$tag];
     }
 
@@ -200,48 +201,48 @@ class Field {
      *
      * @return Field
      */
-    public function getParentField(){
+    public function getParentField() {
         return $this->parantField;
     }
 
-    public function getParentTag(){
+    public function getParentTag() {
         return $this->getParentField()->getTag();
     }
 
-    public function hasParent(){
+    public function hasParent() {
         return ($this->getParentField() !== null);
     }
 
     /**
      * @return Field
      */
-    public function setValue($value){
+    public function setValue($value) {
         $this->setControlField();
         $this->value = $value;
         return $this;
     }
 
-    public function getValue(){
+    public function getValue() {
         return $this->value;
     }
 
-    public function getSubfields(){
+    public function getSubfields() {
         return $this->subfields;
     }
 
-    public function setError($msg){
+    public function setError($msg) {
         $this->errors[] = $msg;
     }
 
-    public function getErrors(){
+    public function getErrors() {
         return $this->errors;
     }
 
-    public function setInfo($msg){
+    public function setInfo($msg) {
         $this->info[] = $msg;
     }
 
-    public function getInfo(){
+    public function getInfo() {
         return $this->info;
     }
 

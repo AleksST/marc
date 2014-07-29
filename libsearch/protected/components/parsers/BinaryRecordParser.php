@@ -1,8 +1,4 @@
 <?php
-require_once 'AbstractRecordParser.php';
-require_once 'Record.php';
-require_once 'Field.php';
-require_once 'Subfield.php';
 
 class BinaryRecordParser extends AbstractRecordParser
 {

@@ -1,21 +1,21 @@
 <?php
 
-require_once 'AbstractSourceExtractor.php';
 
-class ZebrasrvExtractor extends AbstractSourceExtractor{
+class ZebrasrvExtractor extends AbstractSourceExtractor
+{
 
     private $resource = null;
 
     private $OIDs = [
-                'sutrs' => '1.2.840.10003.5.101',
-                'grs-1' => '1.2.840.10003.5.105',
-                'html'  => '1.2.840.10003.5.109.3',
-                'xml'   => '1.2.840.10003.5.109.10',
-                'rtf'   => '1.2.840.10003.5.1000.155.1',
-                'usmarc'  => '1.2.840.10003.5.10',
-                'rusmarc' => '1.2.840.10003.5.28',
-                'unimarc' => '1.2.840.10003.5.1',
-            ];
+        'sutrs' => '1.2.840.10003.5.101',
+        'grs-1' => '1.2.840.10003.5.105',
+        'html' => '1.2.840.10003.5.109.3',
+        'xml' => '1.2.840.10003.5.109.10',
+        'rtf' => '1.2.840.10003.5.1000.155.1',
+        'usmarc' => '1.2.840.10003.5.10',
+        'rusmarc' => '1.2.840.10003.5.28',
+        'unimarc' => '1.2.840.10003.5.1',
+    ];
 
     private $yazOutputTypes = [
         'string', 'array', 'xml', 'raw'
@@ -49,7 +49,7 @@ class ZebrasrvExtractor extends AbstractSourceExtractor{
 
         // todo: check host, port, database, charset, syntax;
         $this->responseFormat = (array_key_exists($source['syntax'], $this->OIDs))
-                                ? $source['syntax'] : 'rusmarc';
+            ? $source['syntax'] : 'rusmarc';
         $this->charset = $source['charset'];
         $zurl = $source['host'] . ':' . $source['port'] . '/' . $source['database'];
 
@@ -60,8 +60,8 @@ class ZebrasrvExtractor extends AbstractSourceExtractor{
 
     private function connect($zurl) {
 
-        if ( !$this->resource = yaz_connect($zurl, ['charset'=> $this->charset]) ) {
-            throw new Exception('Cann\'t connect to yaz server: ' .$zurl);
+        if (!$this->resource = yaz_connect($zurl, ['charset' => $this->charset])) {
+            throw new Exception('Cann\'t connect to yaz server: ' . $zurl);
         }
 
         return true;
@@ -70,7 +70,7 @@ class ZebrasrvExtractor extends AbstractSourceExtractor{
     public function search($conditions) {
 
         if (!is_resource($this->resource)) {
-            throw new Exeption('Cann\'t use search before connect to yaz seerver');
+            throw new Exception('Cann\'t use search before connect to yaz seerver');
         }
 
         yaz_syntax($this->resource, $this->OIDs[$this->responseFormat]);
@@ -83,15 +83,14 @@ class ZebrasrvExtractor extends AbstractSourceExtractor{
     /**
      * $rpn - rpn-format query, example '@attr 1=1035 "terms to search"'
      * @return string $rpn
+     * todo: set conditions
      */
     private function createQuery($conditions = '') {
         return iconv('UTF-8', $this->charset, '@attr 1=1035 история');
     }
 
     /**
-     *
-     * @param string $type - possible output formst
-     * @return type
+     * @return string
      */
     private function getNextRaw() {
 

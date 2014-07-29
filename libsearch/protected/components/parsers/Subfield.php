@@ -1,6 +1,7 @@
 <?php
 
-class Subfield {
+class Subfield
+{
 
     private $code;
     private $tag;
@@ -16,19 +17,19 @@ class Subfield {
     /**
      * @return Subfield
      */
-    public static function getInstance($code = 'a', $tag = null){
+    public static function getInstance($code = 'a', $tag = null) {
         $instance = new self;
         return $instance->setTag($tag)->setCode($code);
     }
 
-    public function setField(Field &$field = null){
+    public function setField(Field &$field = null) {
         $this->field = $field;
     }
 
     /**
      * @return Field
      */
-    public function getField(){
+    public function getField() {
         return $this->field;
     }
 
@@ -40,19 +41,19 @@ class Subfield {
         return $this;
     }
 
-    public function getTag(){
+    public function getTag() {
         return $this->tag;
     }
 
     /**
      * @return Subfield
      */
-    public function setCode($code){
+    public function setCode($code) {
         $this->code = $code;
         return $this;
     }
 
-    public function getCode(){
+    public function getCode() {
         return $this->code;
     }
 
@@ -64,47 +65,47 @@ class Subfield {
         return $this;
     }
 
-    public function getName(){
+    public function getName() {
         return $this->name;
     }
 
     /**
      * @return Subfield
      */
-    public function setValue($value){
+    public function setValue($value) {
         $this->value = $value;
         return $this;
     }
 
-    public function getValue(){
+    public function getValue() {
         return $this->value;
     }
 
     /**
      * @return Subfield
      */
-    public function setIsRepeatable($isRepeatable){
-        $this->isRepeatable = (bool) $isRepeatable;
+    public function setIsRepeatable($isRepeatable) {
+        $this->isRepeatable = (bool)$isRepeatable;
         return $this;
     }
 
-    public function isRepeatable(){
+    public function isRepeatable() {
         return $this->isRepeatable;
     }
 
-    public function setError($msg){
+    public function setError($msg) {
         $this->errors[] = $msg;
     }
 
-    public function getErrors(){
+    public function getErrors() {
         return $this->errors;
     }
 
-    public function setInfo($msg){
+    public function setInfo($msg) {
         $this->info[] = $msg;
     }
 
-    public function getInfo(){
+    public function getInfo() {
         return $this->info;
     }
 

@@ -1,5 +1,7 @@
 <?php
-abstract class AbstractRecordParser{
+
+abstract class AbstractRecordParser
+{
 
     /**
      * @var Record
@@ -9,5 +11,5 @@ abstract class AbstractRecordParser{
     /**
      * @return Record
      */
-    abstract function parse($record  = '');
+    abstract function parse($record = '');
 }

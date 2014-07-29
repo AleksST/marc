@@ -1,5 +1,7 @@
 <?php
-abstract class AbstractStructure {
+
+abstract class AbstractStructure
+{
 
     abstract function isFieldRepeatable($tag);
 
@@ -9,9 +11,9 @@ abstract class AbstractStructure {
         return ($tag < 10);
     }
 
-    public function isDataField($tag){
+    public function isDataField($tag) {
         return !($this->isControlfield($tag) || $this->isLinkedField($tag));
     }
 
-    abstract function setValidator(/*AbstractValidator $validator*/);
+    abstract function setValidator( /*AbstractValidator $validator*/);
 }

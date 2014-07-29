@@ -1,7 +1,7 @@
 <?php
-require_once 'AbstractSourceExtractor.php';
 
-class FileExtractor extends AbstractSourceExtractor{
+class FileExtractor extends AbstractSourceExtractor
+{
 
     private $recordsSeparator = "\x1D";
     private $maxBitesReadFromFile = 4096;
@@ -17,7 +17,7 @@ class FileExtractor extends AbstractSourceExtractor{
      * @return FileExtractor
      * @throws Exception
      */
-    public function setSource($fname){
+    public function setSource($fname) {
         if (is_file($fname) && is_readable($fname)) {
             $this->handle = fopen($fname, 'r');
             return $this;
@@ -39,7 +39,7 @@ class FileExtractor extends AbstractSourceExtractor{
         return false;
     }
 
-    private function getNextRaw(){
+    private function getNextRaw() {
 
         if (!$raw_record = $this->loadNext()) {
             return false;
@@ -48,22 +48,22 @@ class FileExtractor extends AbstractSourceExtractor{
         return $raw_record;
     }
 
-    private function loadNext(){
+    private function loadNext() {
 
         // check records limit
-        if($this->recordsRead >= $this->recordsLimit && $this->recordsLimit !== 0){
+        if ($this->recordsRead >= $this->recordsLimit && $this->recordsLimit !== 0) {
             return false;
         }
 
-        if(sizeof($this->tmpRecords)){
+        if (sizeof($this->tmpRecords)) {
             return array_shift($this->tmpRecords);
         }
 
-        if(!is_resource($this->handle)){
+        if (!is_resource($this->handle)) {
             return false;
         }
 
-        if(!$data = fread($this->handle, $this->maxBitesReadFromFile)){
+        if (!$data = fread($this->handle, $this->maxBitesReadFromFile)) {
             $this->close();
             return false;
         }
@@ -73,16 +73,16 @@ class FileExtractor extends AbstractSourceExtractor{
         $this->tmpRecords = explode($this->recordsSeparator, $this->prefix . $data);
         $this->prefix = array_pop($this->tmpRecords);
 
-        if(strlen($this->prefix) > $this->maxRecordSize){
+        if (strlen($this->prefix) > $this->maxRecordSize) {
             $this->close();
-            throw new Exception("record #" . ($this->recordsRead+1) . " is too long");
+            throw new Exception("record #" . ($this->recordsRead + 1) . " is too long");
         }
 
         return $this->loadNext();
     }
 
-    private function close(){
-        if(is_resource($this->handle)){
+    private function close() {
+        if (is_resource($this->handle)) {
             fclose($this->handle);
         }
     }

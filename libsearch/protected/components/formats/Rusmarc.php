@@ -1,6 +1,7 @@
 <?php
 
-class Rusmarc extends Marc {
+class Rusmarc extends Marc
+{
 
     protected $parentTags = array(461, 462);
     protected $childTags = array(463, 464);
@@ -19,17 +20,17 @@ class Rusmarc extends Marc {
 
     public function __construct($structureFileName = null) {
 
-        if(null === $structureFileName) {
+        if (null === $structureFileName) {
             $structureFileName = __DIR__ . '/rusmarc.xml';
         }
         $this->Structure = simplexml_load_file($structureFileName);
     }
 
-    public function getParentTags(){
+    public function getParentTags() {
         return $this->parentTags;
     }
 
-    public function getChildTags(){
+    public function getChildTags() {
         return $this->childTags;
     }
 
@@ -37,7 +38,7 @@ class Rusmarc extends Marc {
         return $this->Structure->xpath($path);
     }
 
-    public function isIndicatorExists($tag, $num, $ind){
+    public function isIndicatorExists($tag, $num, $ind) {
         return $this->path($this->fp . "[@tag=$tag]/indicators/ind$num/option[@value='$ind']");
     }
 
@@ -69,20 +70,20 @@ class Rusmarc extends Marc {
         return count($this->path("/record/fields/linkedfields/field[@tag=$tag]"));
     }
 
-    public function isValueCoded($tag, $code){
-        return count($this->path($this->fp ."[@tag=$tag]/subfields/subfield[@code='$code']/position"));
+    public function isValueCoded($tag, $code) {
+        return count($this->path($this->fp . "[@tag=$tag]/subfields/subfield[@code='$code']/position"));
     }
 
-    public function getSubfieldPositions($tag, $code){
+    public function getSubfieldPositions($tag, $code) {
 
         $positions = array();
-        $pos = $this->path($this->fp ."[@tag=$tag]/subfields/subfield[@code='$code']/position");
+        $pos = $this->path($this->fp . "[@tag=$tag]/subfields/subfield[@code='$code']/position");
 
-        foreach($pos as $position) {
-			$options = array();
-			foreach ($position->option as $option){
-				$options[(string)$option['value']] = (string)$option['name'];
-			}
+        foreach ($pos as $position) {
+            $options = array();
+            foreach ($position->option as $option) {
+                $options[(string)$option['value']] = (string)$option['name'];
+            }
 
             $positions[] = array(
                 'start' => (int)$position['start'],
@@ -95,10 +96,10 @@ class Rusmarc extends Marc {
         return $positions;
     }
 
-    public function getFieldName($tag){
+    public function getFieldName($tag) {
 
         $field = current($this->path($this->fp . "[@tag=$tag]"));
-        if(!is_object($field)){
+        if (!is_object($field)) {
             return false;
         }
         $attrs = $field->attributes();
@@ -108,7 +109,7 @@ class Rusmarc extends Marc {
     public function getSubfieldName($tag, $code) {
 
         $subfield = current($this->path($this->fp . "[@tag=$tag]/subfields/subfield[@code='$code']"));
-        if(!is_object($subfield)){
+        if (!is_object($subfield)) {
             return false;
         }
         $attrs = $subfield->attributes();
@@ -119,7 +120,7 @@ class Rusmarc extends Marc {
 
         $options = $this->path($this->fp . "[@tag=$tag]/indicators/ind$num/option");
         $out = array();
-        foreach ($options as $option){
+        foreach ($options as $option) {
             $out[(string)$option['value']] = (string)$option['name'];
         }
         return $out;
@@ -136,7 +137,7 @@ class Rusmarc extends Marc {
         $fields = array();
         $mandatory_fields = $this->path($this->fp . "[@mandatory=1]");
 
-        foreach ($mandatory_fields as $mfield){
+        foreach ($mandatory_fields as $mfield) {
             $attrs = $mfield->attributes();
             $fields[(string)$attrs['tag']] = (string)$attrs['name'];
         }
@@ -144,15 +145,15 @@ class Rusmarc extends Marc {
         return $fields;
     }
 
-    public function getLeaderPositions(){
+    public function getLeaderPositions() {
 
         $positions = array();
         foreach ($this->path('/record/leader/position') as $position) {
-            if($position->count()) {
+            if ($position->count()) {
                 $attr = $position->attributes();
 
                 $options = array();
-                foreach ($position as $option){
+                foreach ($position as $option) {
                     $options[(string)$option['value']] = (string)$option['name'];
                 }
 

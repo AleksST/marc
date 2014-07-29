@@ -1,6 +1,7 @@
 <?php
 
-abstract class AbstractSourceExtractor{
+abstract class AbstractSourceExtractor
+{
     protected $records = array();
     /**
      * @var AbstractRecordParser
@@ -23,7 +24,7 @@ abstract class AbstractSourceExtractor{
         return $this;
     }
 
-    public function setLimit($limit){
+    public function setLimit($limit) {
         $this->recordsLimit = ($limit < 0) ? 0 : $limit;
         return $this;
     }

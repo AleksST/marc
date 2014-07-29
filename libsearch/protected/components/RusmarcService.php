@@ -186,7 +186,7 @@ class RusmarcStructureService
 
     function mb_ucfirst($string, $encoding) {
         return mb_strtoupper(mb_substr($string, 0, 1, $encoding), $encoding)
-               . mb_substr($string, 1, mb_strlen($string, $encoding) - 1, $encoding);
+        . mb_substr($string, 1, mb_strlen($string, $encoding) - 1, $encoding);
     }
 
     /**
