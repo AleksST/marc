@@ -19,7 +19,7 @@ $rm->setRecordsLimit(50);
 $records_count = count($rm->parseZServer($source, []));
 ?>
 <html>
-    <header>
+    <head>
         <link rel="stylesheet" href="css/marc.css">
         <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
         <script>
@@ -36,7 +36,7 @@ $records_count = count($rm->parseZServer($source, []));
             $(elem).find(".record-full").toggleClass('view-record-full');
         }
         </script>
-    </header>
+    </head>
     <body>
     <?php $rm->display(); ?>
 
