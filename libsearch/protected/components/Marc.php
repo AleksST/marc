@@ -79,6 +79,9 @@ abstract class Marc
         }
     }
 
+	/**
+	 * @return Record[]
+	 */
     public function getRecords() {
         return $this->records;
     }
@@ -92,31 +95,27 @@ abstract class Marc
         $this->Extractor->setSource($fname)->setLimit($this->recordsLimit);
 
         while ($record = $this->Extractor->getNextRecord()) {
-            $this->Validator->validate($record);
+            //$this->Validator->validate($record);
             $this->records[$record->getId()] = $record->toUnicode();
         }
-
-        return $this->createRecordsList();
     }
 
-    public function parseZServer($options, $request) {
+    public function parseZServer($options, RpnQuery $request) {
         $this->Extractor = new ZebrasrvExtractor(new BinaryRecordParser);
         $this->Extractor->setSource($options, $request)->setLimit($this->recordsLimit);
 
         while ($record = $this->Extractor->getNextRecord()) {
             $record->setEncode($options['charset']);
-            $this->Validator->validate($record);
+            //$this->Validator->validate($record);
             $this->records[$record->getId()] = $record->toUnicode();
         }
-
-        return $this->createRecordsList();
     }
 
     public function setValidator(AbstractValidator $validator) {
         $this->Validator = $validator->setFormat($this);
     }
 
-    protected function createRecordsList() {
+    /*protected function createRecordsList() {
 
         $this->setParentAndChildren();
         $this->generateTree();
@@ -156,5 +155,5 @@ abstract class Marc
                 $this->recordsTreeMap[] = $id;
             }
         }
-    }
+    }*/
 }

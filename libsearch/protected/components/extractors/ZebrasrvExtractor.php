@@ -45,7 +45,7 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
         return false;
     }
 
-    public function setSource($source = array(), $conditions = array()) {
+    public function setSource($source = array(), RpnQuery $conditions = null) {
 
         // todo: check host, port, database, charset, syntax;
         $this->responseFormat = (array_key_exists($source['syntax'], $this->OIDs))
@@ -67,7 +67,7 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
         return true;
     }
 
-    public function search($conditions) {
+    public function search(RpnQuery $conditions) {
 
         if (!is_resource($this->resource)) {
             throw new Exception('Cann\'t use search before connect to yaz seerver');
@@ -86,7 +86,7 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
      * todo: set conditions
      */
     private function createQuery($conditions = '') {
-        return iconv('UTF-8', $this->charset, '@attr 1=1035 история');
+        return iconv('UTF-8', $this->charset, $conditions);
     }
 
     /**

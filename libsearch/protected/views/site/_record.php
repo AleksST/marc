@@ -9,7 +9,7 @@ $info = (array)$record->getInfo();
 </div>
 <div class="record-full">
 
-    <div class="record-error">
+    <!--<div class="record-error">
         <?php foreach ($errors as $msg): ?>
             <div class="record-msg"><?= $msg; ?></div>
         <?php endforeach; ?>
@@ -19,7 +19,7 @@ $info = (array)$record->getInfo();
         <?php foreach ($info as $msg): ?>
             <div class="record-msg"><?= $msg ?></div>
         <?php endforeach; ?>
-    </div>
+    </div>-->
 
     <?php foreach ($record->getFields() as $tag => $fields): ?>
     <div class="field" tag="<?= $tag ?>">

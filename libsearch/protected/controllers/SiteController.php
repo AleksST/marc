@@ -13,8 +13,10 @@ class SiteController extends AppController
         ];
         /** @var Rusmarc $rm */
         $rm = Marc::factory('rusmarc');
-        $rm->setRecordsLimit(50);
-        $records_count = count($rm->parseZServer($source, []));
+        $rm->setRecordsLimit(5);
+		$request = new RpnQuery;
+		$request->addAnywhereCondition('родина');
+		$rm->parseZServer($source, $request);
         $this->render('index', ['marc' => $rm]);
     }
 }
