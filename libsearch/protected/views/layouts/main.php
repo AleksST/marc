@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/print.css" media="print">
 	<link rel="stylesheet" type="text/css" href="<?= Yii::app()->request->baseUrl; ?>/css/main.css">
+	<script type="text/javascript" src="<?= Yii::app()->request->baseUrl; ?>/js/angular.min.js"></script>
 
 	<title><?= CHtml::encode($this->pageTitle); ?></title>
 </head>

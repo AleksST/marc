@@ -2,9 +2,8 @@
 
 abstract class AbstractValidator
 {
-
     /**
-     * @var Marc
+     * @var AbstractFormat
      */
     protected $Format;
 
@@ -15,7 +14,7 @@ abstract class AbstractValidator
 
     abstract function validateCodedSubfield(Subfield $subfield);
 
-    public function setFormat(Marc $format) {
+    public function setFormat(AbstractFormat $format) {
         $this->Format = $format;
         return $this;
     }
@@ -77,7 +76,6 @@ abstract class AbstractValidator
         if ($field->hasParent() && $field->getTag() < 10) {
             return $this->validateLinkedControlField($field);
         }
-
     }
 
     protected function validateDataField(Field $field) {

@@ -345,3 +345,16 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/marc/libsearch/public/
 ---
+2014/09/03 02:16:52 [error] [php] Undefined property: Rusmarc::$Validator (/home/aleks/www/marc/libsearch/protected/components/Marc.php:76)
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/aleks/www/marc/yii/framework/web/CController.php(286): SiteController->runAction()
+#2 /home/aleks/www/marc/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#3 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#4 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/aleks/www/marc/libsearch/public/index.php(10): CWebApplication->run()
+REQUEST_URI=/marc/libsearch/public/
+in /home/aleks/www/marc/libsearch/protected/components/Marc.php (76)
+in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (19)
+in /home/aleks/www/marc/libsearch/public/index.php (10)

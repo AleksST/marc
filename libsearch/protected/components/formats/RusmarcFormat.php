@@ -1,6 +1,6 @@
 <?php
 
-class Rusmarc extends Marc
+class RusmarcFormat extends AbstractFormat
 {
 
     protected $parentTags = array(461, 462);

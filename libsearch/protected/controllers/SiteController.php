@@ -15,7 +15,7 @@ class SiteController extends AppController
         $rm = Marc::factory('rusmarc');
         $rm->setRecordsLimit(5);
 		$request = new RpnQuery;
-		$request->addAnywhereCondition('родина');
+		$request->addAnywhereCondition('любовь');
 		$rm->parseZServer($source, $request);
         $this->render('index', ['marc' => $rm]);
     }
