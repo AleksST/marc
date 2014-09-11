@@ -107,11 +107,10 @@ class Field
     }
 
     /**
-     * @return Field
+     * @return self
      */
     public function setControlField() {
-        $this->isLinkedEntry = false;
-        $this->isData = false;
+        $this->isData = $this->isLinkedEntry = false;
         $this->isControl = true;
         return $this;
     }
@@ -121,12 +120,11 @@ class Field
     }
 
     /**
-     * @return Field
+     * @return self
      */
     public function setDataField() {
-        $this->isLinkedEntry = false;
+        $this->isControl = $this->isLinkedEntry = false;
         $this->isData = true;
-        $this->isControl = false;
         return $this;
     }
 
@@ -135,12 +133,11 @@ class Field
     }
 
     /**
-     * @return Field
+     * @return self
      */
     public function setLinkedEntryField() {
         $this->isLinkedEntry = true;
-        $this->isData = false;
-        $this->isControl = false;
+        $this->isControl = $this->isData = false;
         return $this;
     }
 
@@ -149,7 +146,7 @@ class Field
     }
 
     /**
-     * @return Field
+     * @return self
      */
     public function addSubfield(Subfield $subfield) {
         $subfield->setField($this);
@@ -177,7 +174,6 @@ class Field
     public function addField(Field $field) {
         $field->setParentField($this);
         $field->setRecord($this->getRecord());
-        $this->setLinkedEntryField(true);
         $this->fields[$field->getTag()][] = $field;
         return $this;
     }
@@ -186,12 +182,29 @@ class Field
         $this->parantField = $field;
     }
 
+    /**
+     * @return array
+     */
     public function getFields() {
         return $this->fields;
     }
 
     /**
-     * @return Field
+     * @return Field[]
+     */
+    public function getFieldsList() {
+        $list = [];
+        foreach ($this->fields as $fields) {
+            foreach ($fields as $field) {
+                $list[] = $field;
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return Field[]
      */
     public function getField($tag) {
         return $this->fields[$tag];
@@ -217,7 +230,6 @@ class Field
      * @return Field
      */
     public function setValue($value) {
-        $this->setControlField();
         $this->value = $value;
         return $this;
     }
@@ -226,8 +238,25 @@ class Field
         return $this->value;
     }
 
+    /**
+     * @return array [code => Subfield[]]
+     */
     public function getSubfields() {
         return $this->subfields;
+    }
+
+    /**
+     * @return Subfield[]
+     */
+    public function getSubfieldsList() {
+        $list = [];
+        foreach ($this->subfields as $code => $subfields) {
+            foreach ($subfields as $subfield) {
+                $list[] = $subfield;
+            }
+        }
+
+        return $list;
     }
 
     public function setError($msg) {

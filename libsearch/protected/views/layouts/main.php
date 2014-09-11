@@ -14,7 +14,7 @@
 	<title><?= CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<body ng-app="App">
 
 <div class="container" id="page">
 

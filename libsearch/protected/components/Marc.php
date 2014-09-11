@@ -74,4 +74,38 @@ abstract class Marc
             $this->records[$record->getId()] = $record->toUnicode();
         }
     }
+
+    public function getRecordsJson() {
+        $data = [];
+        foreach ($this->getRecords() as $record) {
+            $data[] = $this->recordToArray($record);
+        }
+
+        return json_encode($data);
+    }
+
+    protected function recordToArray(Record $record) {
+        $rec = [];
+        foreach ($record->getFieldsList() as $field) {
+            if ($field->isControlField()) {
+                $rec[$field->getTag()]['a'][] = $field->getValue();
+            }
+
+            if ($field->isDataField()) {
+                foreach ($field->getSubfieldsList() as $subfield) {
+                    $rec[$field->getTag()][$subfield->getCode()][] = $subfield->getValue();
+                }
+            }
+
+            if ($field->isLinkedEntryField()) {
+                foreach ($field->getFieldsList() as $linkedField) {
+                    foreach ($linkedField->getSubfieldsList() as $subfield) {
+                        $rec[$field->getTag() . '#' .$linkedField->getTag()][$subfield->getCode()][] = $subfield->getValue();
+                    }
+                }
+            }
+        }
+
+        return $rec;
+    }
 }

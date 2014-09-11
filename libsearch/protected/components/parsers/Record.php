@@ -148,8 +148,25 @@ class Record
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getFields() {
         return $this->fields;
+    }
+
+    /**
+     * @return Field[]
+     */
+    public function getFieldsList() {
+        $list = [];
+        foreach ($this->fields as $fields) {
+            foreach ($fields as $field) {
+                $list[] = $field;
+            }
+        }
+
+        return $list;
     }
 
     public function setEncode($encode) {

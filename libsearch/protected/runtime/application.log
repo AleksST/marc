@@ -358,3 +358,13 @@ REQUEST_URI=/marc/libsearch/public/
 in /home/aleks/www/marc/libsearch/protected/components/Marc.php (76)
 in /home/aleks/www/marc/libsearch/protected/controllers/SiteController.php (19)
 in /home/aleks/www/marc/libsearch/public/index.php (10)
+2014/09/10 21:39:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "page".' in /home/aleks/www/marc/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/aleks/www/marc/yii/framework/web/CController.php(270): CController->missingAction('page')
+#1 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#2 /home/aleks/www/marc/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#3 /home/aleks/www/marc/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /home/aleks/www/marc/libsearch/public/index.php(10): CApplication->run()
+#5 {main}
+REQUEST_URI=/marc/libsearch/public/index.php?r=site/page&view=about
+---

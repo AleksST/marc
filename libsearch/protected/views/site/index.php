@@ -1,8 +1,22 @@
 <?php /** @var Marc $marc */ ?>
-<div class="record-list" ng-app="">
-<?php foreach ($marc->getRecords() as $record) : ?>
-    <div class="record" id="<?= $record->getId() ?>">
-        <?= $this->renderPartial('_record', ['record' => $record]); ?>
+<?php Yii::app()->clientScript->registerScriptFile('js/searchCtrl.js'); ?>
+<div class="record-list"  ng-controller="searchCtrl">
+    <div class="search-form">
+        <form>
+            <input type="text" name="condition" ng-model="search">
+            <button ng-click="loadData()" class="submit">Find</button>
+        </form>
     </div>
-<?php endforeach; ?>
+    <div ng-repeat="record in records">
+        <div ng-repeat="(tag, field) in record">
+            <div ng-repeat="(cod, subfield) in field">
+                <div ng-repeat="value in subfield">
+                    {{tag}}#{{cod}}|{{value}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>{{search}}</div>
+
 </div>

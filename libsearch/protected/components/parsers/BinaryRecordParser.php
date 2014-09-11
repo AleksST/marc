@@ -93,7 +93,7 @@ class BinaryRecordParser extends AbstractRecordParser
     }
 
     private function parseControlField($tag, $data) {
-        $this->record->addField(Field::getInstance($tag)->setValue($data));
+        $this->record->addField(Field::getInstance($tag)->setValue($data)->setControlField());
     }
 
     private function parseLinkedField($tag, $data) {
@@ -108,18 +108,18 @@ class BinaryRecordParser extends AbstractRecordParser
             $subfield = Field::getInstance($sub_tag)->setInds($sub_inds);
 
             if ($this->isControlField($sub_tag)) {
-                $subfield->setValue(substr($field_str, $this->tagLength));
+                $subfield->setValue(substr($field_str, $this->tagLength))->setControlField();
             } else {
-                $subfield->addSubfields($this->parseSubfields(substr($field_str, $this->tagLength)));
+                $subfield->addSubfields($this->parseSubfields(substr($field_str, $this->tagLength)))->setDataField();
             }
-            $this->record->addField(Field::getInstance($tag)->setInds($inds)->addField($subfield));
+            $this->record->addField(Field::getInstance($tag)->setInds($inds)->addField($subfield)->setLinkedEntryField());
         }
     }
 
     private function parseDataField($tag, $data) {
         $inds = substr($data, 0, $this->indLength);
         $this->record->addField(
-            Field::getInstance($tag)->setInds($inds)->addSubfields($this->parseSubfields($data))
+            Field::getInstance($tag)->setInds($inds)->addSubfields($this->parseSubfields($data))->setDataField()
         );
     }
 
