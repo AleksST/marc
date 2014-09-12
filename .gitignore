@@ -4,3 +4,7 @@ libsearch/public/asserts/*
 libsearch/protected/config/main.loc.php
 libsearch/protected/config/console.php
 libsearch/protected/runtime/*
+
+libsearch/protected/runtime/application.log
+libsearch/public/assets/
+libsearch/protected/config/console.php
