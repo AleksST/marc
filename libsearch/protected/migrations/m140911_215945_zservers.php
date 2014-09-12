@@ -6,11 +6,11 @@ class m140911_215945_zservers extends CDbMigration
 	{
         $this->createTable('zservers', [
             'id' => 'pk',
-            'name' => 'nvarchar(1000)',
-            'library' => 'nvarchar(1000)',
-            'host' => 'nvarchar(100)',
+            'name' => 'varchar(1000)',
+            'library' => 'varchar(1000)',
+            'host' => 'varchar(100)',
             'port' => 'integer',
-            'db' => 'nvarchar(50)',
+            'db' => 'varchar(50)',
             'is_rusmarc' => 'boolean',
         ]);
 
