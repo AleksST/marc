@@ -1,6 +1,6 @@
 .idea
 *~
-libsearch/public/asserts*
+libsearch/public/asserts/*
 libsearch/protected/config/main.loc.php
 libsearch/protected/config/console.php
 libsearch/protected/runtime/*
