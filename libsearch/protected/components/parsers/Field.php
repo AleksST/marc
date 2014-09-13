@@ -3,276 +3,354 @@
 class Field
 {
 
-    private $tag;
-    private $parantField = null;
-    private $name = '';
-    private $ind1;
-    private $ind2;
+	private $tag;
+	private $parentField = null;
+	private $name = '';
+	private $ind1;
+	private $ind2;
 
-    private $isControl = false;
-    private $isData = true;
-    private $isLinkedEntry = false;
+	private $isControl = false;
+	private $isData = true;
+	private $isLinkedEntry = false;
 
-    private $fields = array();
-    private $subfields = array();
-    private $value;
+	private $fields = array();
+	private $subfields = array();
+	private $value;
 
-    private $errors;
-    private $info;
-
-    private $record = null;
+	private $record = null;
 
 
-    /**
-     * @return Field
-     */
-    public static function getInstance($tag = 999) {
-        $instance = new self;
-        return $instance->setTag($tag);
-    }
+	/**
+	 * @param int $tag
+	 * @return Field
+	 */
+	public static function getInstance($tag = 999)
+	{
+		$instance = new self;
+		return $instance->setTag($tag);
+	}
 
-    /**
-     * @return Field
-     */
-    public function setTag($tag) {
-        $tag = (int)$tag;
-        if (!($tag > 0 && $tag < 1000)) {
-            throw new Exception('Field::setTag ');
-        }
-        $this->tag = $tag;
-        return $this;
-    }
+	/**
+	 * @param string|int $tag
+	 * @throws Exception
+	 * @return self
+	 */
+	public function setTag($tag)
+	{
+		$tag = (int)$tag;
+		if (!($tag > 0 && $tag < 1000)) {
+			throw new Exception('Field::setTag');
+		}
+		$this->tag = $tag;
+		return $this;
+	}
 
-    public function getTag() {
-        return $this->tag;
-    }
+	/**
+	 * @return int
+	 */
+	public function getTag()
+	{
+		return $this->tag;
+	}
 
-    public function setRecord(Record $record = null) {
-        $this->record = $record;
-        foreach ($this->getFields() as $fields) {
-            foreach ($fields as $field) {
-                $field->setRecord($record);
-            }
-        }
-    }
+	/**
+	 * @param Record $record
+	 */
+	public function setRecord(Record $record = null)
+	{
+		$this->record = $record;
+		foreach ($this->getFields() as $fields) {
+			/** @var Field $field */
+			foreach ($fields as $field) {
+				$field->setRecord($record);
+			}
+		}
+	}
 
-    /**
-     *
-     * @return Record
-     */
-    public function getRecord() {
-        return $this->record;
-    }
+	/**
+	 * @return Record
+	 */
+	public function getRecord()
+	{
+		return $this->record;
+	}
 
-    /**
-     * @return Field
-     */
-    public function setName($name) {
-        $this->name = (string)$name;
-        return $this;
-    }
+	/**
+	 * @param string $name
+	 * @return Field
+	 */
+	public function setName($name)
+	{
+		$this->name = (string)$name;
+		return $this;
+	}
 
-    /**
-     * @return Field
-     */
-    public function setInds($inds) {
-        $this->setInd1($inds[0]);
-        $this->setInd2($inds[1]);
-        return $this;
-    }
+	/**
+	 * @param array $inds
+	 * @return self
+	 */
+	public function setInds($inds)
+	{
+		$this->setInd1(isset($inds[0]) ? $inds[0] : '');
+		$this->setInd2(isset($inds[0]) ? $inds[0] : '');
+		return $this;
+	}
 
-    private function setInd1($ind1) {
-        if (strlen($ind1) !== 1) {
-            throw new Exception('Field::setInd1');
-        }
-        $this->ind1 = $ind1;
-    }
+	/**
+	 * @param string $ind1
+	 * @throws Exception
+	 */
+	private function setInd1($ind1)
+	{
+		if (strlen($ind1) !== 1) {
+			throw new Exception('Field::setInd1');
+		}
+		$this->ind1 = $ind1;
+	}
 
-    private function setInd2($ind2) {
-        if (strlen($ind2) !== 1) {
-            throw new Exception('Field::setInd2');
-        }
-        $this->ind2 = $ind2;
-    }
+	/**
+	 * @param string $ind2
+	 * @throws Exception
+	 */
+	private function setInd2($ind2)
+	{
+		if (strlen($ind2) !== 1) {
+			throw new Exception('Field::setInd2');
+		}
+		$this->ind2 = $ind2;
+	}
 
-    public function getIndicator($num) {
-        if (in_array($num, array(1, 2))) {
-            return $this->{"ind$num"};
-        }
-        return false;
-    }
+	/**
+	 * @param int $num
+	 * @return string|false
+	 */
+	public function getIndicator($num)
+	{
+		if (in_array($num, array(1, 2))) {
+			return $this->{"ind$num"};
+		}
+		return false;
+	}
 
-    public function getName() {
-        return $this->name;
-    }
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
 
-    /**
-     * @return self
-     */
-    public function setControlField() {
-        $this->isData = $this->isLinkedEntry = false;
-        $this->isControl = true;
-        return $this;
-    }
+	/**
+	 * @return self
+	 */
+	public function setControlField()
+	{
+		$this->isData = $this->isLinkedEntry = false;
+		$this->isControl = true;
+		return $this;
+	}
 
-    public function isControlField() {
-        return $this->isControl;
-    }
+	/**
+	 * @return bool
+	 */
+	public function isControlField()
+	{
+		return $this->isControl;
+	}
 
-    /**
-     * @return self
-     */
-    public function setDataField() {
-        $this->isControl = $this->isLinkedEntry = false;
-        $this->isData = true;
-        return $this;
-    }
+	/**
+	 * @return self
+	 */
+	public function setDataField()
+	{
+		$this->isControl = $this->isLinkedEntry = false;
+		$this->isData = true;
+		return $this;
+	}
 
-    public function isDataField() {
-        return $this->isData;
-    }
+	/**
+	 * @return bool
+	 */
+	public function isDataField()
+	{
+		return $this->isData;
+	}
 
-    /**
-     * @return self
-     */
-    public function setLinkedEntryField() {
-        $this->isLinkedEntry = true;
-        $this->isControl = $this->isData = false;
-        return $this;
-    }
+	/**
+	 * @return self
+	 */
+	public function setLinkedEntryField()
+	{
+		$this->isLinkedEntry = true;
+		$this->isControl = $this->isData = false;
+		return $this;
+	}
 
-    public function isLinkedEntryField() {
-        return $this->isLinkedEntry;
-    }
+	/**
+	 * @return bool
+	 */
+	public function isLinkedEntryField()
+	{
+		return $this->isLinkedEntry;
+	}
 
-    /**
-     * @return self
-     */
-    public function addSubfield(Subfield $subfield) {
-        $subfield->setField($this);
-        $this->subfields[$subfield->getCode()][] = $subfield->setTag($this->getTag());
-        return $this;
-    }
+	/**
+	 * @param Subfield $subfield
+	 * @return self
+	 */
+	public function addSubfield(Subfield $subfield)
+	{
+		$subfield->setField($this);
+		$this->subfields[$subfield->getCode()][] = $subfield->setTag($this->getTag());
+		return $this;
+	}
 
-    /**
-     * @return Field
-     */
-    public function addSubfields($subfields) {
-        foreach ($subfields as $subfield) {
-            $this->addSubfield($subfield);
-        }
-        return $this;
-    }
+	/**
+	 * @param array $subfields
+	 * @return self
+	 */
+	public function addSubfields($subfields)
+	{
+		foreach ($subfields as $subfield) {
+			$this->addSubfield($subfield);
+		}
+		return $this;
+	}
 
-    public function getSubfield($code) {
-        return $this->subfields[$code];
-    }
+	/**
+	 * @param string $code
+	 * @return Subfield[]
+	 */
+	public function getSubfield($code)
+	{
+		return $this->subfields[$code];
+	}
 
-    /**
-     * @return Field
-     */
-    public function addField(Field $field) {
-        $field->setParentField($this);
-        $field->setRecord($this->getRecord());
-        $this->fields[$field->getTag()][] = $field;
-        return $this;
-    }
+	/**
+	 * @param Field $field
+	 * @return self
+	 */
+	public function addField(Field $field)
+	{
+		$field->setParentField($this);
+		$field->setRecord($this->getRecord());
+		$this->fields[$field->getTag()][] = $field;
+		return $this;
+	}
 
-    public function setParentField(Field $field) {
-        $this->parantField = $field;
-    }
+	/**
+	 * @param Field $field
+	 * @throws Exception
+	 */
+	public function setParentField(Field $field)
+	{
+		if (null !== $this->parentField) {
+			throw new Exception('Parent field already set');
+		}
+		$this->parentField = $field;
+	}
 
-    /**
-     * @return array
-     */
-    public function getFields() {
-        return $this->fields;
-    }
+	/**
+	 * @return array
+	 */
+	public function getFields()
+	{
+		return $this->fields;
+	}
 
-    /**
-     * @return Field[]
-     */
-    public function getFieldsList() {
-        $list = [];
-        foreach ($this->fields as $fields) {
-            foreach ($fields as $field) {
-                $list[] = $field;
-            }
-        }
+	/**
+	 * @param int $tag
+	 * @return array
+	 */
+	public function getField($tag)
+	{
+		return $this->fields[$tag];
+	}
 
-        return $list;
-    }
+	/**
+	 * @return Field|null
+	 */
+	public function getParentField()
+	{
+		return $this->parentField;
+	}
 
-    /**
-     * @return Field[]
-     */
-    public function getField($tag) {
-        return $this->fields[$tag];
-    }
+	/**
+	 * @return int|null
+	 */
+	public function getParentTag()
+	{
+		if ($parent = $this->getParentField()) {
+			return $this->getTag();
+		}
 
-    /**
-     *
-     * @return Field
-     */
-    public function getParentField() {
-        return $this->parantField;
-    }
+		return null;
+	}
 
-    public function getParentTag() {
-        return $this->getParentField()->getTag();
-    }
+	/**
+	 * @return bool
+	 */
+	public function hasParent()
+	{
+		return ($this->getParentField() !== null);
+	}
 
-    public function hasParent() {
-        return ($this->getParentField() !== null);
-    }
+	/**
+	 * @param mixed $value
+	 * @return Field
+	 */
+	public function setValue($value)
+	{
+		$this->value = $value;
+		return $this;
+	}
 
-    /**
-     * @return Field
-     */
-    public function setValue($value) {
-        $this->value = $value;
-        return $this;
-    }
+	/**
+	 * @return mixed
+	 */
+	public function getValue()
+	{
+		return $this->value;
+	}
 
-    public function getValue() {
-        return $this->value;
-    }
+	/**
+	 * @return array [code => Subfield[]]
+	 */
+	public function getSubfields()
+	{
+		return $this->subfields;
+	}
 
-    /**
-     * @return array [code => Subfield[]]
-     */
-    public function getSubfields() {
-        return $this->subfields;
-    }
+	/**
+	 * @return array
+	 */
+	public function toArray()
+	{
+		$field = [];
 
-    /**
-     * @return Subfield[]
-     */
-    public function getSubfieldsList() {
-        $list = [];
-        foreach ($this->subfields as $code => $subfields) {
-            foreach ($subfields as $subfield) {
-                $list[] = $subfield;
-            }
-        }
+		if ($this->isControl) {
+			return ['a' => [$this->value]];
+		}
 
-        return $list;
-    }
+		if ($this->isData) {
+			foreach ($this->subfields as $cod => $subfields) {
+				/** @var Subfield $subfield */
+				foreach ($subfields as $subfield) {
+					$field[$cod][] = $subfield->getValue();
+				}
+			}
+		}
 
-    public function setError($msg) {
-        $this->errors[] = $msg;
-    }
+		if ($this->isLinkedEntry) {
+			/** @var Field $linkedField */
+			foreach ($this->getFields() as $cod => $linkedFields) {
+				foreach ($linkedFields as $linkedField) {
+					$field[$cod] = $linkedField->toArray();
+				}
+			}
+		}
 
-    public function getErrors() {
-        return $this->errors;
-    }
-
-    public function setInfo($msg) {
-        $this->info[] = $msg;
-    }
-
-    public function getInfo() {
-        return $this->info;
-    }
+		return $field;
+	}
 
 }

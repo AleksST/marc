@@ -74,7 +74,7 @@ abstract class AbstractValidator
 
         // TODO: add other field validation
         if ($field->hasParent() && $field->getTag() < 10) {
-            return $this->validateLinkedControlField($field);
+            $this->validateLinkedControlField($field);
         }
     }
 
@@ -108,7 +108,7 @@ abstract class AbstractValidator
             $this->validateControlField($field);
 
         } elseif ($this->Format->isLinkedEntryField($tag)) {
-            $this->validateLinkedEntryField($field);
+            $this->validateLinkedField($field);
 
         } elseif (!$this->Format->isFieldExists($tag)) {
             $field->setInfo(sprintf("Поле '%3d' отсутствует в стандарте.", $tag));
@@ -181,7 +181,7 @@ abstract class AbstractValidator
         }
     }
 
-    protected function validateLinkedEntryField(Field $mainfield) {
+    protected function validateLinkedField(Field $mainfield) {
 
         foreach ($mainfield->getFields() as $fields) {
             foreach ($fields as $field) {

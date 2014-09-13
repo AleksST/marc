@@ -6,6 +6,8 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
 
     private $resource = null;
 
+	private $options = ['timeout' => 1];
+
     private $OIDs = [
         'sutrs'		=> '1.2.840.10003.5.101',
         'grs-1'		=> '1.2.840.10003.5.105',
@@ -45,13 +47,13 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
         return false;
     }
 
-    public function setSource($source = array(), RpnQuery $conditions = null) {
+    public function setSource($source, RpnQuery $conditions = null) {
 
+	    /** @var Zserver $source */
         // todo: check host, port, database, charset, syntax;
-        $this->responseFormat = (array_key_exists($source['syntax'], $this->OIDs))
-            ? $source['syntax'] : 'rusmarc';
-        $this->charset = $source['charset'];
-        $zurl = $source['host'] . ':' . $source['port'] . '/' . $source['database'];
+        $this->responseFormat = (array_key_exists($source->format, $this->OIDs)) ? $source->format : 'rusmarc';
+        $this->charset = $source->encode;
+	    $zurl = $source->host . ':' . $source->port . '/' . $source->db;
 
         $this->connect($zurl);
         $this->search($conditions);
@@ -75,18 +77,19 @@ class ZebrasrvExtractor extends AbstractSourceExtractor
 
         yaz_syntax($this->resource, $this->OIDs[$this->responseFormat]);
         yaz_search($this->resource, 'rpn', $this->createQuery($conditions));
-        yaz_wait();
+	    yaz_wait($this->options);
 
         return yaz_hits($this->resource);
     }
 
-    /**
-     * $rpn - rpn-format query, example '@attr 1=1035 "terms to search"'
-     * @return string $rpn
-     * todo: set conditions
-     */
+	/**
+	 * $rpn - rpn-format query, example '@attr 1=1035 "terms to search"'
+	 * @param string $conditions
+	 * @return string $rpn
+	 * @todo set conditions
+	 */
     private function createQuery($conditions = '') {
-        return iconv('UTF-8', $this->charset, $conditions);
+        return iconv('utf-8', $this->charset, $conditions);
     }
 
     /**

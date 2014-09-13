@@ -4,25 +4,27 @@ class Subfield
 {
 
     private $code;
-    private $tag;
+    private $tag = 999;
     private $value;
     private $name;
-    private $isRepeatable;
-
-    private $errors;
-    private $info;
+    private $isRepeatable = false;
 
     private $field = null;
 
-    /**
-     * @return Subfield
-     */
+	/**
+	 * @param string $code
+	 * @param string $tag
+	 * @return Subfield
+	 */
     public static function getInstance($code = 'a', $tag = null) {
         $instance = new self;
         return $instance->setTag($tag)->setCode($code);
     }
 
-    public function setField(Field &$field = null) {
+	/**
+	 * @param Field $field
+	 */
+	public function setField(Field &$field = null) {
         $this->field = $field;
     }
 
@@ -33,80 +35,88 @@ class Subfield
         return $this->field;
     }
 
-    /**
-     * @return Subfield
-     */
+	/**
+	 * @param int $tag
+	 * @return self
+	 */
     public function setTag($tag) {
-        $this->tag = $tag;
+        $this->tag = (int)$tag;
         return $this;
     }
 
-    public function getTag() {
+	/**
+	 * @return int
+	 */
+	public function getTag() {
         return $this->tag;
     }
 
-    /**
-     * @return Subfield
-     */
+	/**
+	 * @param string $code
+	 * @throws Exception
+	 * @return self
+	 */
     public function setCode($code) {
+	    if (1 !== strlen($code)) {
+		    throw new Exception ('Invalid code length');
+	    }
         $this->code = $code;
         return $this;
     }
 
-    public function getCode() {
+	/**
+	 * @return string
+	 */
+	public function getCode() {
         return $this->code;
     }
 
-    /**
-     * @return Subfield
-     */
+	/**
+	 * @param string $name
+	 * @return self
+	 */
     public function setName($name) {
         $this->name = $name;
         return $this;
     }
 
-    public function getName() {
+	/**
+	 * @return string
+	 */
+	public function getName() {
         return $this->name;
     }
 
-    /**
-     * @return Subfield
-     */
+	/**
+	 * @param mixed $value
+	 * @return self
+	 */
     public function setValue($value) {
         $this->value = $value;
         return $this;
     }
 
-    public function getValue() {
+	/**
+	 * @return mixed
+	 */
+	public function getValue() {
         return $this->value;
     }
 
-    /**
-     * @return Subfield
-     */
-    public function setIsRepeatable($isRepeatable) {
+	/**
+	 * @param bool $isRepeatable
+	 * @return self
+	 */
+    public function setIsRepeatable($isRepeatable = true) {
         $this->isRepeatable = (bool)$isRepeatable;
         return $this;
     }
 
-    public function isRepeatable() {
+	/**
+	 * @return bool
+	 */
+	public function isRepeatable() {
         return $this->isRepeatable;
-    }
-
-    public function setError($msg) {
-        $this->errors[] = $msg;
-    }
-
-    public function getErrors() {
-        return $this->errors;
-    }
-
-    public function setInfo($msg) {
-        $this->info[] = $msg;
-    }
-
-    public function getInfo() {
-        return $this->info;
     }
 
 }

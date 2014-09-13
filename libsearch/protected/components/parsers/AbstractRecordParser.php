@@ -2,7 +2,6 @@
 
 abstract class AbstractRecordParser
 {
-
     /**
      * @var Record
      */

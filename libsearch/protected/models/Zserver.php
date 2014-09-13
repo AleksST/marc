@@ -10,97 +10,110 @@
  * @property string $host
  * @property integer $port
  * @property string $db
- * @property integer $is_rusmarc
+ * @property string $format
+ * @property string $encode
+ * @property boolean $is_active
  */
 class Zserver extends CActiveRecord
 {
-    /**
-     * @return string the associated database table name
-     */
-    public function tableName()
-    {
-        return 'zservers';
-    }
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'zservers';
+	}
 
-    /**
-     * @return array validation rules for model attributes.
-     */
-    public function rules()
-    {
-        return array(
-            array('port, is_rusmarc', 'numerical', 'integerOnly'=>true),
-            array('name, library', 'length', 'max'=>1000),
-            array('host', 'length', 'max'=>100),
-            array('db', 'length', 'max'=>50),
-            // @todo Please remove those attributes that should not be searched.
-            array('id, name, library, host, port, db, is_rusmarc', 'safe', 'on'=>'search'),
-        );
-    }
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('port', 'numerical', 'integerOnly'=>true),
+			array('name, library', 'length', 'max'=>1000),
+			array('host', 'length', 'max'=>100),
+			array('db, format', 'length', 'max'=>50),
+			array('encode', 'length', 'max'=>20),
+			array('is_active', 'safe'),
+			// The following rule is used by search().
+			// @todo Please remove those attributes that should not be searched.
+			array('id, name, library, host, port, db, format, encode, is_active', 'safe', 'on'=>'search'),
+		);
+	}
 
-    /**
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        return array(
-        );
-    }
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+		);
+	}
 
-    /**
-     * @return array customized attribute labels (name=>label)
-     */
-    public function attributeLabels()
-    {
-        return array(
-            'id' => 'ID',
-            'name' => 'Name',
-            'library' => 'Library',
-            'host' => 'Host',
-            'port' => 'Port',
-            'db' => 'Db',
-            'is_rusmarc' => 'Is Rusmarc',
-        );
-    }
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'id' => 'ID',
+			'name' => 'Name',
+			'library' => 'Library',
+			'host' => 'Host',
+			'port' => 'Port',
+			'db' => 'Db',
+			'format' => 'Format',
+			'encode' => 'Encode',
+			'is_active' => 'Is Active',
+		);
+	}
 
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     *
-     * Typical usecase:
-     * - Initialize the model fields with values from filter form.
-     * - Execute this method to get CActiveDataProvider instance which will filter
-     * models according to data in model fields.
-     * - Pass data provider to CGridView, CListView or any similar widget.
-     *
-     * @return CActiveDataProvider the data provider that can return the models
-     * based on the search/filter conditions.
-     */
-    public function search()
-    {
-        // @todo Please modify the following code to remove attributes that should not be searched.
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
-        $criteria=new CDbCriteria;
+		$criteria=new CDbCriteria;
 
-        $criteria->compare('id',$this->id);
-        $criteria->compare('name',$this->name,true);
-        $criteria->compare('library',$this->library,true);
-        $criteria->compare('host',$this->host,true);
-        $criteria->compare('port',$this->port);
-        $criteria->compare('db',$this->db,true);
-        $criteria->compare('is_rusmarc',$this->is_rusmarc);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('library',$this->library,true);
+		$criteria->compare('host',$this->host,true);
+		$criteria->compare('port',$this->port);
+		$criteria->compare('db',$this->db,true);
+		$criteria->compare('format',$this->format,true);
+		$criteria->compare('encode',$this->encode,true);
+		$criteria->compare('is_active',$this->is_active);
 
-        return new CActiveDataProvider($this, array(
-            'criteria'=>$criteria,
-        ));
-    }
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
 
-    /**
-     * Returns the static model of the specified AR class.
-     * Please note that you should have this exact method in all your CActiveRecord descendants!
-     * @param string $className active record class name.
-     * @return Zservers the static model class
-     */
-    public static function model($className=__CLASS__)
-    {
-        return parent::model($className);
-    }
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Zserver the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
 }

@@ -29,7 +29,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?= date('Y'); ?> by Alex Tushin.<br/>
+		Copyright &copy;<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

@@ -64,48 +64,36 @@ abstract class Marc
         }
     }
 
-    public function parseZServer($options, RpnQuery $request) {
+    public function parseZServer(Zserver $yazServer, RpnQuery $request) {
         $this->Extractor = new ZebrasrvExtractor(new BinaryRecordParser);
-        $this->Extractor->setSource($options, $request)->setLimit($this->recordsLimit);
+        $this->Extractor->setSource($yazServer, $request)->setLimit($this->recordsLimit);
 
         while ($record = $this->Extractor->getNextRecord()) {
-            $record->setEncode($options['charset']);
-            $this->Format->getValidator()->validate($record);
+            $record->setEncode($yazServer->encode);
+//            $this->Format->getValidator()->validate($record);
             $this->records[$record->getId()] = $record->toUnicode();
         }
     }
 
-    public function getRecordsJson() {
-        $data = [];
-        foreach ($this->getRecords() as $record) {
-            $data[] = $this->recordToArray($record);
-        }
+	/**
+	 * @return array
+	 */
+	public function toArray()
+	{
+		$out = [];
+		foreach ($this->records as $record) {
+			$out[] = $record->toArray();
+		}
 
-        return json_encode($data);
-    }
+		return $out;
+	}
 
-    protected function recordToArray(Record $record) {
-        $rec = [];
-        foreach ($record->getFieldsList() as $field) {
-            if ($field->isControlField()) {
-                $rec[$field->getTag()]['a'][] = $field->getValue();
-            }
+	/**
+	 * @return string
+	 */
+	public function toJson()
+	{
+		return json_encode($this->toArray());
+	}
 
-            if ($field->isDataField()) {
-                foreach ($field->getSubfieldsList() as $subfield) {
-                    $rec[$field->getTag()][$subfield->getCode()][] = $subfield->getValue();
-                }
-            }
-
-            if ($field->isLinkedEntryField()) {
-                foreach ($field->getFieldsList() as $linkedField) {
-                    foreach ($linkedField->getSubfieldsList() as $subfield) {
-                        $rec[$field->getTag() . '#' .$linkedField->getTag()][$subfield->getCode()][] = $subfield->getValue();
-                    }
-                }
-            }
-        }
-
-        return $rec;
-    }
 }

@@ -17,46 +17,58 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?= $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?= $form->labelEx($model,'name'); ?>
+		<?= $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
+		<?= $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'library'); ?>
-		<?php echo $form->textField($model,'library',array('size'=>60,'maxlength'=>1000)); ?>
-		<?php echo $form->error($model,'library'); ?>
+		<?= $form->labelEx($model,'library'); ?>
+		<?= $form->textField($model,'library',array('size'=>60,'maxlength'=>1000)); ?>
+		<?= $form->error($model,'library'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'host'); ?>
-		<?php echo $form->textField($model,'host',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'host'); ?>
+		<?= $form->labelEx($model,'host'); ?>
+		<?= $form->textField($model,'host',array('size'=>60,'maxlength'=>100)); ?>
+		<?= $form->error($model,'host'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'port'); ?>
-		<?php echo $form->textField($model,'port'); ?>
-		<?php echo $form->error($model,'port'); ?>
+		<?= $form->labelEx($model,'port'); ?>
+		<?= $form->numberField($model,'port'); ?>
+		<?= $form->error($model,'port'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'db'); ?>
-		<?php echo $form->textField($model,'db',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'db'); ?>
+		<?= $form->labelEx($model,'db'); ?>
+		<?= $form->textField($model,'db',array('size'=>50,'maxlength'=>50)); ?>
+		<?= $form->error($model,'db'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'is_rusmarc'); ?>
-		<?php echo $form->textField($model,'is_rusmarc'); ?>
-		<?php echo $form->error($model,'is_rusmarc'); ?>
+		<?= $form->labelEx($model,'format'); ?>
+		<?= $form->textField($model,'format'); ?>
+		<?= $form->error($model,'format'); ?>
+	</div>
+
+	<div class="row">
+		<?= $form->labelEx($model,'encode'); ?>
+		<?= $form->textField($model,'encode'); ?>
+		<?= $form->error($model,'encode'); ?>
+	</div>
+
+	<div class="row">
+		<?= $form->labelEx($model,'is_active'); ?>
+		<?= $form->textField($model,'is_active'); ?>
+		<?= $form->error($model,'is_active'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?= CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

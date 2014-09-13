@@ -3,220 +3,257 @@
 class Record
 {
 
-    private $id;
-    private $parentId;
-    private $childrenIds = array();
-    private $relevantIds = array();
-    private $fields = array();
-    private $leader;
-    private $errors;
-    private $info;
-    private $encode = null;
+	private $id;
+	private $parentId;
+	private $childrenIds = array();
+	private $relevantIds = array();
+	private $fields = array();
+	private $leader;
+	private $encode = null;
 
-    /**
-     * @return Record
-     */
-    public static function getInstance() {
-        return new self;
-    }
+	/**
+	 * @return Record
+	 */
+	public static function getInstance()
+	{
+		return new self;
+	}
 
-    /**
-     * @param string $msg
-     * @return Record
-     */
-    public function setError($msg) {
-        $this->errors[] = $msg;
-        return $this;
-    }
+	/**
+	 * @param int $tag
+	 * @return array|Field|false
+	 */
+	public function getField($tag)
+	{
+		if (!$this->isFieldExists($tag)) {
+			return false;
+		}
 
-    /**
-     * @param string $msg
-     * @internal param string $type
-     * @return Record
-     */
-    public function setInfo($msg) {
-        $this->info[] = $msg;
-        return $this;
-    }
+		return $this->fields[$tag];
+	}
 
-    public function getErrors() {
-        return $this->errors;
-    }
+	/**
+	 * @param string|int $tag
+	 * @return bool
+	 */
+	public function isFieldExists($tag)
+	{
+		return array_key_exists((int)$tag, $this->fields);
+	}
 
-    public function getInfo() {
-        return $this->info;
-    }
+	/**
+	 * @param Field $field
+	 * @return self
+	 */
+	public function addField(Field $field)
+	{
+		if (1 === ($tag = $field->getTag())) {
+			$this->setId($field->getValue());
+		}
 
-    /**
-     * @param int $tag
-     * @return array, Field or false
-     */
-    public function getField($tag) {
+		$field->setRecord($this);
+		$this->fields[$tag][] = $field;
 
-        if (!$this->isFieldExists($tag)) {
-            return false;
-        }
+		return $this;
+	}
 
-        return $this->fields[$tag];
-    }
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
 
-    public function isFieldExists($tag) {
-        return array_key_exists((int)$tag, $this->fields);
-    }
+	/**
+	 * @param string $id
+	 * @return self
+	 */
+	public function setId($id)
+	{
+		$this->id = trim($id);
+		return $this;
+	}
 
-    /**
-     * @param Field $field
-     * @return Record
-     */
-    public function addField(Field $field) {
-        $tag = (int)$field->getTag();
+	/**
+	 * @return string
+	 */
+	public function getParentId()
+	{
+		return $this->parentId;
+	}
 
-        if ($tag === 1) {
-            $this->setId($field->getValue());
-        }
+	/**
+	 * @param string $id
+	 * @return Record
+	 */
+	public function setParentId($id)
+	{
+		$this->parentId = trim($id);
+		return $this;
+	}
 
-        $field->setRecord($this);
-        $this->fields[$tag][] = $field;
+	/**
+	 * @return array
+	 */
+	public function getChildrenIds()
+	{
+		return $this->childrenIds;
+	}
 
-        return $this;
-    }
+	/**
+	 * @param string $id
+	 * @return self
+	 */
+	public function setChildId($id)
+	{
+		$this->childrenIds[] = trim($id);
+		array_unique($this->childrenIds);
+		return $this;
+	}
 
-    public function getId() {
-        return $this->id;
-    }
+	/**
+	 * @return array
+	 */
+	public function getRelevantIds()
+	{
+		return $this->relevantIds;
+	}
 
-    /**
-     * @param string $id
-     * @return Record
-     */
-    public function setId($id) {
-        $this->id = trim($id);
-        return $this;
-    }
+	/**
+	 * @param string $id
+	 * @return self
+	 */
+	public function setRelevantId($id)
+	{
+		$this->relevantIds[] = trim($id);
+		array_unique($this->relevantIds);
+		return $this;
+	}
 
-    public function getParentId() {
-        return $this->parentId;
-    }
+	/**
+	 * @return string
+	 */
+	public function getLeader()
+	{
+		return $this->leader;
+	}
 
-    /**
-     * @param string $id
-     * @return Record
-     */
-    public function setParentId($id) {
-        $this->parentId = trim($id);
-        return $this;
-    }
+	/**
+	 * @param string $leader
+	 * @return self
+	 */
+	public function setLeader($leader)
+	{
+		$this->leader = $leader;
+		return $this;
+	}
 
-    public function getChildrenIds() {
-        return $this->childrenIds;
-    }
+	/**
+	 * @return array
+	 */
+	public function getFields()
+	{
+		return $this->fields;
+	}
 
-    /**
-     * @param string $id
-     * @return Record
-     */
-    public function setChildId($id) {
-        $this->childrenIds[] = trim($id);
-        array_unique($this->childrenIds);
-        return $this;
-    }
+	/**
+	 * @param string $encode
+	 * @return self
+	 */
+	public function setEncode($encode)
+	{
+		$this->encode = $encode . '';
+		return $this;
+	}
 
-    public function getRelevantIds() {
-        return $this->relevantIds;
-    }
+	/**
+	 * @return string|null
+	 */
+	public function getEncode()
+	{
+		return $this->encode;
+	}
 
-    /**
-     * @param string $id
-     * @return Record
-     */
-    public function setRelevantId($id) {
-        $this->relevantIds[] = trim($id);
-        array_unique($this->relevantIds);
-        return $this;
-    }
+	/**
+	 * @return self
+	 */
+	public function toUnicode()
+	{
+		return $this->convertToUnicode('utf-8');
+	}
 
-    public function getLeader() {
-        return $this->leader;
-    }
+	/**
+	 * @param string $encode
+	 * @return self
+	 */
+	public function convertToUnicode($encode = 'utf-8')
+	{
 
-    /**
-     * @param string $leader
-     * @return Record
-     */
-    public function setLeader($leader) {
-        $this->leader = $leader;
-        return $this;
-    }
+		if (!$this->encode || $this->encode == $encode) {
+			return $this;
+		}
 
-    /**
-     * @return array
-     */
-    public function getFields() {
-        return $this->fields;
-    }
+		$this->setId(iconv($this->encode, $encode, $this->getId()));
 
-    /**
-     * @return Field[]
-     */
-    public function getFieldsList() {
-        $list = [];
-        foreach ($this->fields as $fields) {
-            foreach ($fields as $field) {
-                $list[] = $field;
-            }
-        }
+		foreach ($this->getFields() as $fields) {
+			foreach ($fields as $field) {
+				$this->fieldToEncode($field, $encode);
+			}
+		}
 
-        return $list;
-    }
+		return $this->setEncode($encode);
+	}
 
-    public function setEncode($encode) {
-        $this->encode = $encode;
-        return $this;
-    }
+	/**
+	 * Convert fields to $out_encode
+	 * @param Field $field
+	 * @param string $out_encode
+	 */
+	private function fieldToEncode(Field $field, $out_encode)
+	{
 
-    public function getEncode() {
-        return $this->encode;
-    }
+		$field->setValue(iconv($this->encode, $out_encode, $field->getValue()));
 
-    public function toUnicode() {
-        return $this->convertToUnicode('utf-8');
-    }
+		if (is_array($field->getFields())) {
+			foreach ($field->getFields() as $linkedFields) {
+				foreach ($linkedFields as $linkedField) {
+					$this->fieldToEncode($linkedField, $out_encode);
+				}
+			}
+		}
 
-    public function convertToUnicode($encode = 'utf-8') {
+		if (is_array($field->getSubfields())) {
+			foreach ($field->getSubfields() as $subfields) {
+				/** @var Subfield $subfield  */
+				foreach ($subfields as $subfield) {
+					$subfield->setValue(iconv($this->encode, $out_encode, $subfield->getValue()));
+				}
+			}
+		}
+	}
 
-        if (!$this->encode || $this->encode == $encode) {
-            return $this;
-        }
+	/**
+	 * @return array
+	 */
+	public function toArray()
+	{
+		$record = [];
+		foreach ($this->fields as $tag => $fields) {
+			/** @var Field $field */
+			foreach ($fields as $field) {
+				$record[$tag][] = $field->toArray();
+			}
+		}
 
-        $this->setId(iconv($this->encode, $encode, $this->getId()));
+		return $record;
+	}
 
-        foreach ($this->getFields() as $fields) {
-            foreach ($fields as $field) {
-                $this->fieldToEncode($field, $encode);
-            }
-        }
-
-        return $this->setEncode($encode);
-    }
-
-    private function fieldToEncode(Field $field, $out_encode) {
-
-        $field->setValue(iconv($this->encode, $out_encode, $field->getValue()));
-
-        if (is_array($field->getFields())) {
-            foreach ($field->getFields() as $linkedfields) {
-                foreach ($linkedfields as $linkedfield) {
-                    $this->fieldToEncode($linkedfield, $out_encode);
-                }
-            }
-        }
-
-        if (is_array($field->getSubfields())) {
-            foreach ($field->getSubfields() as $subfields) {
-                foreach ($subfields as $subfield) {
-                    $subfield->setValue(iconv($this->encode, $out_encode, $subfield->getValue()));
-                }
-            }
-        }
-    }
+	/**
+	 * @return string
+	 */
+	public function toJson()
+	{
+		return json_encode($this->toArray());
+	}
 }

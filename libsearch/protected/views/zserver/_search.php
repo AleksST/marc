@@ -12,42 +12,52 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?= $form->label($model,'id'); ?>
+		<?= $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
+		<?= $form->label($model,'name'); ?>
+		<?= $form->textField($model,'name',array('size'=>60,'maxlength'=>1000)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'library'); ?>
-		<?php echo $form->textField($model,'library',array('size'=>60,'maxlength'=>1000)); ?>
+		<?= $form->label($model,'library'); ?>
+		<?= $form->textField($model,'library',array('size'=>60,'maxlength'=>1000)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'host'); ?>
-		<?php echo $form->textField($model,'host',array('size'=>60,'maxlength'=>100)); ?>
+		<?= $form->label($model,'host'); ?>
+		<?= $form->textField($model,'host',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'port'); ?>
-		<?php echo $form->textField($model,'port'); ?>
+		<?= $form->label($model,'port'); ?>
+		<?= $form->textField($model,'port'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'db'); ?>
-		<?php echo $form->textField($model,'db',array('size'=>50,'maxlength'=>50)); ?>
+		<?= $form->label($model,'db'); ?>
+		<?= $form->textField($model,'db',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'is_rusmarc'); ?>
-		<?php echo $form->textField($model,'is_rusmarc'); ?>
+		<?= $form->label($model,'format'); ?>
+		<?= $form->textField($model,'format'); ?>
+	</div>
+
+	<div class="row">
+		<?= $form->label($model,'encode'); ?>
+		<?= $form->textField($model,'encode'); ?>
+	</div>
+
+	<div class="row">
+		<?= $form->label($model,'is_active'); ?>
+		<?= $form->textField($model,'is_active'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?= CHtml::submitButton('Search'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

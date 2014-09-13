@@ -11,7 +11,9 @@ class m140911_215945_zservers extends CDbMigration
             'host' => 'varchar(100)',
             'port' => 'integer',
             'db' => 'varchar(50)',
-            'is_rusmarc' => 'boolean',
+            'format' => 'varchar(50)',
+	        'encode' => 'varchar(20)',
+	        'is_active' => 'boolean',
         ]);
 
 

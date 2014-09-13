@@ -57,7 +57,7 @@ class RusmarcStructureService
         //$fileName = 'http://www.rusmarc.ru/soft/RUSMARC20130619.xml'
         //$fileName = 'http://www.bookmarc.pt/tvs/examples/Unimarc0.xml';
 
-        // http://www.rba.ru/rusmarc/soft/rusmarc_slim.xsd
+        //http://www.rba.ru/rusmarc/soft/rusmarc_slim.xsd
         //http://cyberdoc.univ-lemans.fr/PUB/CfU/Journee_UNIMARC_Lyon/archive/doc/FORMAT.html
 
         $rmXML = simplexml_load_file($fileName);
