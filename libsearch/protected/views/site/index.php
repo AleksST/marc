@@ -10,12 +10,6 @@
         </form>
     </div>
 	<div ng-repeat="record in records">
-        <div ng-repeat="(tag, field) in record">
-            <div ng-repeat="(cod, subfield) in field">
-                <div ng-repeat="value in subfield">
-                    {{tag}}#{{cod}}|{{value}}
-                </div>
-            </div>
-        </div>
+        {{record.title}}|{{record.year}}|{{record.isbn}}|{{record.authors}}
     </div>
 </div>

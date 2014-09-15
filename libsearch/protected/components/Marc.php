@@ -18,6 +18,8 @@ abstract class Marc
     protected $records = array();
     protected $recordsLimit = 0;
 
+    abstract public function getPretty(Record $record);
+
     public function setFormat(AbstractFormat $format)
     {
         $this->Format = $format;
@@ -96,4 +98,24 @@ abstract class Marc
 		return json_encode($this->toArray());
 	}
 
+    /**
+     * @return array
+     */
+    public function toPrettyArray()
+    {
+        $out = [];
+        foreach ($this->records as $record) {
+            $out[] = $this->getPretty($record);
+        }
+
+        return $out;
+    }
+
+    /**
+     * @return string
+     */
+    public function toPrettyJson()
+    {
+        return json_encode($this->toPrettyArray());
+    }
 }

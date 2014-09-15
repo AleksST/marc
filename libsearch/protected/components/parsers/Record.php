@@ -233,6 +233,57 @@ class Record
 		}
 	}
 
+    /**
+     * @param int $tag
+     * @param string $cod
+     * @return mixed|null
+     */
+    public function getValueByTagCode($tag, $cod = 'a')
+    {
+        $tag = (int) $tag;
+        $cod = substr($cod, 0,1);
+        if (!is_array($fields = $this->getField($tag))) {
+            return null;
+        }
+
+        /** @var Field $field */
+        foreach ($fields as $field) {
+            if (!is_array($subfields = $field->getSubfield($cod))) continue;
+            /** @var Subfield $subfield */
+            foreach ($subfields as $subfield) {
+                return $subfield->getValue();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param int $tag
+     * @param string $cod
+     * @return array
+     */
+    public function getValuesByTagCode($tag, $cod = 'a')
+    {
+        $tag = (int) $tag;
+        $cod = substr($cod, 0,1);
+        if (!is_array($fields = $this->getField($tag))) {
+            return [];
+        }
+
+        $out = [];
+        /** @var Field $field */
+        foreach ($fields as $field) {
+            if (!is_array($subfields = $field->getSubfield($cod))) continue;
+            /** @var Subfield $subfield */
+            foreach ($subfields as $subfield) {
+                $out[] = $subfield->getValue();
+            }
+        }
+
+        return $out;
+    }
+
 	/**
 	 * @return array
 	 */

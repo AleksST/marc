@@ -2,7 +2,7 @@
 
 class SiteController extends AppController
 {
-	private $recordsLimit = 5;
+	private $recordsLimit = 10;
 
     public function actionIndex() {
 	    //ZServerService::generate();
@@ -25,8 +25,10 @@ class SiteController extends AppController
 	    /** @var Marc $rm */
 		$rm = Marc::factory($server->format);
 		$rm->setRecordsLimit($this->recordsLimit);
+//        $rm->parseFile('/home/aleks/www/marc/test_files/sven09.mrc');
 		$rm->parseZServer($server, $request);
-		echo $rm->toJson();
+//        var_dump($pretty->convert(current($rm->getRecords())));
+		echo $rm->toPrettyJson();
 //		var_dump($rm->toArray());
 		Yii::app()->end();
     }

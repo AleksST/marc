@@ -223,7 +223,7 @@ class Field
 	 */
 	public function getSubfield($code)
 	{
-		return $this->subfields[$code];
+		return isset($this->subfields[$code]) ? $this->subfields[$code] : null;
 	}
 
 	/**
